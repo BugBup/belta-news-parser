@@ -50,12 +50,32 @@ def call_github_models(prompt):
         return None
 
 def parse_news():
-    """Парсит новости с belta.by/all_news"""
+    """Парсит новости с belta.by/all_news с улучшенной обработкой ошибок"""
+    
+    # Добавляем заголовки, чтобы имитировать запрос из браузера
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+    }
+    
     try:
-        response = requests.get(NEWS_URL, timeout=15)
-        response.raise_for_status()
-    except requests.RequestException as e:
-        print(f"Ошибка загрузки страницы: {e}")
+        # Добавляем таймаут и разрешаем переадресацию
+        response = requests.get(NEWS_URL, headers=headers, timeout=30, allow_redirects=True)
+        response.raise_for_status()  # Проверяем, что запрос успешен (код 200)
+        print(f"✅ Статус ответа: {response.status_code}")
+        
+    except requests.exceptions.Timeout:
+        print("❌ Ошибка: Превышен таймаут ожидания ответа от сервера.")
+        return []
+    except requests.exceptions.ConnectionError as e:
+        print(f"❌ Ошибка подключения: {e}")
+        print("   Возможно, сервер временно недоступен или блокирует запросы.")
+        return []
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Другая ошибка при загрузке страницы: {e}")
         return []
 
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -92,6 +112,7 @@ def parse_news():
 
     # Если не нашли через классы - пробуем найти через ссылки с датами
     if not news_items:
+        print("⚠️ Не найдено новостей по классам. Пробую альтернативный метод...")
         for link in soup.find_all('a', href=True):
             parent = link.find_parent()
             if parent and parent.find('time'):
@@ -137,13 +158,13 @@ def create_digest(news_list):
     {news_text}
     """
 
-    print("Отправляю запрос к GitHub Models...")
+    print("🧠 Отправляю запрос к GitHub Models...")
     response = call_github_models(prompt)
     
     if response and 'choices' in response:
         return response['choices'][0]['message']['content']
     else:
-        print("Не удалось получить ответ от модели. Возвращаю сырые новости.")
+        print("⚠️ Не удалось получить ответ от модели. Возвращаю сырые новости.")
         return f"**Не удалось сгенерировать дайджест.**\n\n{news_text}"
 
 def save_digest(digest):
