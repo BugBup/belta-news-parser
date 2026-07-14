@@ -8,22 +8,21 @@ from datetime import datetime
 NEWS_URL = "https://belta.by/all_news"
 OUTPUT_FILE = "digest.md"
 
-# Получаем токен из переменных окружения (в GitHub Actions он доступен автоматически)
+# Получаем токен из переменных окружения
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-# Модель для использования через GitHub Models
-MODEL_NAME = "gpt-4o-mini"  # Бесплатная модель
+# Используем новый, актуальный эндпоинт для GitHub Models
+MODELS_ENDPOINT = "https://models.github.ai/inference/chat/completions"
+# Указываем модель с правильным префиксом
+MODEL_NAME = "openai/gpt-4o-mini"
 
 def call_github_models(prompt):
     """
-    Отправляет запрос к GitHub Models API.
-    Документация: https://docs.github.com/en/rest/models
+    Отправляет запрос к актуальному GitHub Models API.
+    Документация: https://docs.github.com/en/github-models
     """
     if not GITHUB_TOKEN:
         raise ValueError("GITHUB_TOKEN не найден в переменных окружения")
 
-    # URL для API GitHub Models
-    url = "https://models.inference.github.com/chat/completions"
-    
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Content-Type": "application/json",
@@ -40,7 +39,7 @@ def call_github_models(prompt):
     }
     
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=30)
+        response = requests.post(MODELS_ENDPOINT, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -49,10 +48,12 @@ def call_github_models(prompt):
             print(f"Ответ сервера: {e.response.text}")
         return None
 
+# --- Функции parse_news, create_digest, save_digest и main остаются без изменений ---
+# (чтобы сэкономить место, они здесь опущены, но должны быть в вашем файле)
+
 def parse_news():
     """Парсит новости с belta.by/all_news с улучшенной обработкой ошибок"""
     
-    # Добавляем заголовки, чтобы имитировать запрос из браузера
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -62,9 +63,8 @@ def parse_news():
     }
     
     try:
-        # Добавляем таймаут и разрешаем переадресацию
         response = requests.get(NEWS_URL, headers=headers, timeout=30, allow_redirects=True)
-        response.raise_for_status()  # Проверяем, что запрос успешен (код 200)
+        response.raise_for_status()
         print(f"✅ Статус ответа: {response.status_code}")
         
     except requests.exceptions.Timeout:
@@ -81,24 +81,18 @@ def parse_news():
     soup = BeautifulSoup(response.text, 'html.parser')
     news_items = []
 
-    # Парсим новости из структуры сайта belta.by
-    # Ищем все блоки с классом, содержащим 'news' или 'item'
     for item in soup.find_all(['div', 'article'], class_=lambda c: c and ('news' in c.lower() or 'item' in c.lower() or 'post' in c.lower())):
-        # Извлекаем время
         time_tag = item.find('time')
         time = time_tag.text.strip() if time_tag else ""
         
-        # Извлекаем категорию
         category_tag = item.find(['span', 'a'], class_=lambda c: c and ('category' in c.lower() or 'tag' in c.lower()))
         category = category_tag.text.strip() if category_tag else ""
         
-        # Извлекаем заголовок
         title_tag = item.find(['h2', 'h3', 'a'], class_=lambda c: c and ('title' in c.lower() or 'headline' in c.lower()))
         if not title_tag:
             title_tag = item.find('a', class_=lambda c: c and 'link' in c.lower())
         title = title_tag.text.strip() if title_tag else ""
         
-        # Извлекаем краткое описание
         desc_tag = item.find(['p', 'div'], class_=lambda c: c and ('desc' in c.lower() or 'announce' in c.lower() or 'text' in c.lower()))
         description = desc_tag.text.strip() if desc_tag else ""
         
@@ -110,7 +104,6 @@ def parse_news():
                 "description": description
             })
 
-    # Если не нашли через классы - пробуем найти через ссылки с датами
     if not news_items:
         print("⚠️ Не найдено новостей по классам. Пробую альтернативный метод...")
         for link in soup.find_all('a', href=True):
@@ -133,7 +126,6 @@ def create_digest(news_list):
     if not news_list:
         return "За сегодня новостей не найдено."
 
-    # Формируем текст для ИИ
     news_text = "Список новостей за сегодня:\n\n"
     for item in news_list:
         news_text += f"[{item['time']}] "
