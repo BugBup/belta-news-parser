@@ -11,7 +11,7 @@ SOURCES = {
     },
     "telegram_econ": {
         "name": "Экономика Беларуси (Telegram)",
-        "url": "https://telegram.me/s/econ_gov_by?before=1505",
+        "url": "https://telegram.me/s/econ_gov_by",
         "type": "telegram"
     },
     "telegram_gov": {
