@@ -9,10 +9,14 @@ jobs:
   parse-and-digest:
     runs-on: ubuntu-latest
     
-    # Важно: разрешаем доступ к GitHub Models
+    # Разрешаем доступ к GitHub Models и записи в репозиторий
     permissions:
       contents: write     # чтобы сохранять файл в репозитории
       models: read        # чтобы использовать GitHub Models
+
+    # --- ГЛАВНОЕ ИЗМЕНЕНИЕ: Принудительно используем Node.js 24 для всех действий ---
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Клонирование репозитория
@@ -30,7 +34,7 @@ jobs:
       - name: Запуск скрипта парсинга
         run: python src/parser.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Автоматически доступен
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Сохранение дайджеста в репозиторий
         uses: stefanzweifel/git-auto-commit-action@v5
