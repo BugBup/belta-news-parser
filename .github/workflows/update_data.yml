@@ -2,7 +2,7 @@ name: Обновление данных
 
 on:
   schedule:
-    - cron: "0 * * * *"   # Каждый час
+    - cron: "0/25 * * * *"   # Каждый час
   workflow_dispatch:
 
 jobs:
