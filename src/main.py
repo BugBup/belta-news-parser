@@ -1,9 +1,10 @@
-# src/main.py (фрагмент с изменениями)
+# src/main.py
 
 import os
 import sys
 import json
 from datetime import datetime
+import traceback
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -42,7 +43,7 @@ def main():
     
     print(f"\n📊 Всего собрано элементов: {len(all_items)}")
     
-    # --- СОХРАНЯЕМ ВСЕ СЫРЫЕ НОВОСТИ ДЛЯ ДИАГНОСТИКИ ---
+    # --- СОХРАНЕНИЕ СЫРЫХ НОВОСТЕЙ В ПАПКУ digests ---
     save_raw_items(all_items)
     
     # 2. Фильтрация
@@ -67,16 +68,22 @@ def main():
     generator = DigestGenerator()
     digest_text = generator.create_digest(filtered_items)
     
-    # 4. Сохранение
+    # 4. Сохранение дайджеста
     save_digest_file(digest_text)
     print("\n✅ Готово!")
 
 def save_raw_items(items):
-    """Сохраняет все сырые новости в файл для диагностики"""
-    if not items:
-        return
+    """
+    Сохраняет все сырые новости в файл для диагностики в папку digests.
+    ВСЕГДА создает файл, даже если список пуст.
+    """
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    # --- ИЗМЕНЕНИЕ: Сохраняем в папку digests ---
+    os.makedirs("digests", exist_ok=True)
+    filename = f"digests/raw_items_{timestamp}.json"
     
-    filename = f"raw_items_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+    absolute_path = os.path.abspath(filename)
+    print(f"   📂 Попытка сохранить файл: {absolute_path}")
     
     # Преобразуем даты в строки для JSON
     export_items = []
@@ -86,10 +93,22 @@ def save_raw_items(items):
             export_item['date'] = export_item['date'].isoformat()
         export_items.append(export_item)
     
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(export_items, f, ensure_ascii=False, indent=2)
-    
-    print(f"💾 Сырые новости сохранены в {filename}")
+    # Сохраняем файл
+    try:
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(export_items, f, ensure_ascii=False, indent=2)
+        
+        # Проверяем, что файл действительно создан
+        if os.path.exists(filename):
+            file_size = os.path.getsize(filename)
+            print(f"   ✅ Файл успешно создан: {filename}")
+            print(f"   📊 Размер файла: {file_size} байт")
+            print(f"   📋 Записей в файле: {len(export_items)}")
+        else:
+            print(f"   ❌ Файл не найден после сохранения!")
+    except Exception as e:
+        print(f"   ❌ Ошибка при сохранении: {e}")
+        print(f"   📋 Детали ошибки: {traceback.format_exc()}")
 
 def save_digest_file(content):
     """Сохраняет дайджест в файл с датой в имени"""
