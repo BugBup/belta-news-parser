@@ -1,13 +1,12 @@
-name: Парсинг новостей и создание дайджеста
+name: Обновление данных
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0/30 * * * *"   # каждые 5 минут для теста
-
+    - cron: "0 * * * *"   # Каждый час
+  workflow_dispatch:
 
 jobs:
-  parse-and-digest:
+  update:
     runs-on: ubuntu-latest
     
     permissions:
@@ -30,13 +29,13 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Запуск скрипта парсинга
-        run: python src/parser.py
+      - name: Запуск парсинга
+        run: python src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Сохранение дайджеста в репозиторий
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Автоматическое обновление дайджеста новостей"
-          file_pattern: digest.md
+          commit_message: "Автоматическое обновление дайджеста"
+          file_pattern: "digests/*.md"
