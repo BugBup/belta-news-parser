@@ -1,3 +1,2 @@
 requests==2.32.3
 beautifulsoup4==4.12.3
-llm-github-models==0.1.0  # Официальный пакет для GitHub Models
