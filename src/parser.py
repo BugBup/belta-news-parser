@@ -8,9 +8,9 @@ from datetime import datetime
 NEWS_URL = "https://belta.by/all_news"
 OUTPUT_FILE = "digest.md"
 
-# Получаем токен из переменных окружения
+# Получаем токен из переменных окружения (в GitHub Actions он доступен автоматически)
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-# Используем новый, актуальный эндпоинт для GitHub Models
+# Используем актуальный эндпоинт для GitHub Models
 MODELS_ENDPOINT = "https://models.github.ai/inference/chat/completions"
 # Указываем модель с правильным префиксом
 MODEL_NAME = "openai/gpt-4o-mini"
@@ -48,12 +48,13 @@ def call_github_models(prompt):
             print(f"Ответ сервера: {e.response.text}")
         return None
 
-# --- Функции parse_news, create_digest, save_digest и main остаются без изменений ---
-# (чтобы сэкономить место, они здесь опущены, но должны быть в вашем файле)
-
 def parse_news():
-    """Парсит новости с belta.by/all_news с улучшенной обработкой ошибок"""
+    """
+    Парсит новости с belta.by/all_news используя рекурсивный поиск.
+    Находит все элементы div и article, у которых в классе есть 'news' или 'item'.
+    """
     
+    # Заголовки для имитации браузера
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -66,7 +67,6 @@ def parse_news():
         response = requests.get(NEWS_URL, headers=headers, timeout=30, allow_redirects=True)
         response.raise_for_status()
         print(f"✅ Статус ответа: {response.status_code}")
-        
     except requests.exceptions.Timeout:
         print("❌ Ошибка: Превышен таймаут ожидания ответа от сервера.")
         return []
@@ -81,22 +81,31 @@ def parse_news():
     soup = BeautifulSoup(response.text, 'html.parser')
     news_items = []
 
-    for item in soup.find_all(['div', 'article'], class_=lambda c: c and ('news' in c.lower() or 'item' in c.lower() or 'post' in c.lower())):
+    # --- РЕКУРСИВНЫЙ ПОИСК: Ищем все div и article, у которых в классе есть 'news' или 'item' ---
+    # find_all() по умолчанию работает рекурсивно, обходя все уровни вложенности
+    for item in soup.find_all(['div', 'article'], class_=lambda c: c and ('news' in c.lower() or 'item' in c.lower())):
+        # Извлекаем время
         time_tag = item.find('time')
         time = time_tag.text.strip() if time_tag else ""
         
-        category_tag = item.find(['span', 'a'], class_=lambda c: c and ('category' in c.lower() or 'tag' in c.lower()))
+        # Извлекаем категорию (если есть)
+        category_tag = item.find(['span', 'a'], class_=lambda c: c and ('category' in c.lower() or 'tag' in c.lower() or 'rubric' in c.lower()))
         category = category_tag.text.strip() if category_tag else ""
         
-        title_tag = item.find(['h2', 'h3', 'a'], class_=lambda c: c and ('title' in c.lower() or 'headline' in c.lower()))
+        # Извлекаем заголовок
+        # Ищем по классам 'title' или 'headline', или просто берем первый 'a' внутри блока
+        title_tag = item.find(['h2', 'h3', 'a'], class_=lambda c: c and ('title' in c.lower() or 'headline' in c.lower() or 'link' in c.lower()))
         if not title_tag:
-            title_tag = item.find('a', class_=lambda c: c and 'link' in c.lower())
+            # Если не нашли по классам, ищем любой тег 'a' внутри блока
+            title_tag = item.find('a')
         title = title_tag.text.strip() if title_tag else ""
         
+        # Извлекаем краткое описание (если есть)
         desc_tag = item.find(['p', 'div'], class_=lambda c: c and ('desc' in c.lower() or 'announce' in c.lower() or 'text' in c.lower()))
         description = desc_tag.text.strip() if desc_tag else ""
         
-        if title:
+        # Если есть заголовок и он достаточно длинный (больше 10 символов), считаем это новостью
+        if title and len(title) > 10:
             news_items.append({
                 "time": time,
                 "category": category,
@@ -104,20 +113,11 @@ def parse_news():
                 "description": description
             })
 
+    # Если новостей не найдено — выводим предупреждение
     if not news_items:
-        print("⚠️ Не найдено новостей по классам. Пробую альтернативный метод...")
-        for link in soup.find_all('a', href=True):
-            parent = link.find_parent()
-            if parent and parent.find('time'):
-                time = parent.find('time').text.strip()
-                title = link.text.strip()
-                if title and len(title) > 10:
-                    news_items.append({
-                        "time": time,
-                        "category": "",
-                        "title": title,
-                        "description": ""
-                    })
+        print("⚠️ Не найдено новостей. Проверьте структуру сайта.")
+    else:
+        print(f"✅ Найдено новостей: {len(news_items)}")
 
     return news_items
 
@@ -126,6 +126,7 @@ def create_digest(news_list):
     if not news_list:
         return "За сегодня новостей не найдено."
 
+    # Формируем текст для ИИ
     news_text = "Список новостей за сегодня:\n\n"
     for item in news_list:
         news_text += f"[{item['time']}] "
@@ -170,10 +171,8 @@ def save_digest(digest):
 def main():
     print("🚀 Начинаю парсинг новостей с belta.by...")
     news = parse_news()
-    print(f"📊 Найдено новостей: {len(news)}")
-
+    
     if news:
-        print("🧠 Формирую дайджест через GitHub Models...")
         digest = create_digest(news)
         save_digest(digest)
         print(f"✅ Дайджест сохранен в файл {OUTPUT_FILE}")
