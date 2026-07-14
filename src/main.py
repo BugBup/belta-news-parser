@@ -1,4 +1,4 @@
-# src/main.py
+# src/main.py (фрагмент с изменениями)
 
 import os
 import sys
@@ -16,8 +16,9 @@ from src.digest_generator import DigestGenerator
 def main():
     print("🚀 Запуск парсинга новостей...")
     
-    # 1. Сбор данных
+    # 1. Сбор данных из всех источников
     all_items = []
+    
     for source_key, source_config in SOURCES.items():
         print(f"\n📡 Обработка источника: {source_config.get('name', source_key)}")
         
@@ -40,6 +41,9 @@ def main():
         all_items.extend(parsed_items)
     
     print(f"\n📊 Всего собрано элементов: {len(all_items)}")
+    
+    # --- СОХРАНЯЕМ ВСЕ СЫРЫЕ НОВОСТИ ДЛЯ ДИАГНОСТИКИ ---
+    save_raw_items(all_items)
     
     # 2. Фильтрация
     print("\n🔍 Фильтрация данных...")
@@ -67,9 +71,28 @@ def main():
     save_digest_file(digest_text)
     print("\n✅ Готово!")
 
+def save_raw_items(items):
+    """Сохраняет все сырые новости в файл для диагностики"""
+    if not items:
+        return
+    
+    filename = f"raw_items_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+    
+    # Преобразуем даты в строки для JSON
+    export_items = []
+    for item in items:
+        export_item = item.copy()
+        if 'date' in export_item and isinstance(export_item['date'], datetime):
+            export_item['date'] = export_item['date'].isoformat()
+        export_items.append(export_item)
+    
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(export_items, f, ensure_ascii=False, indent=2)
+    
+    print(f"💾 Сырые новости сохранены в {filename}")
+
 def save_digest_file(content):
     """Сохраняет дайджест в файл с датой в имени"""
-    # Создаем папку digests, если её нет
     os.makedirs("digests", exist_ok=True)
     filename = f"digests/digest-{datetime.now().strftime('%Y-%m-%d')}.md"
     with open(filename, 'w', encoding='utf-8') as f:
