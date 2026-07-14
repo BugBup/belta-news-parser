@@ -10,7 +10,10 @@ def filter_by_keywords(items, keywords):
     """
     filtered = []
     
-    for item in items:
+    print(f"\n   🔍 Фильтрация по ключевым словам: {keywords}")
+    print(f"   📊 Всего элементов на входе: {len(items)}")
+    
+    for i, item in enumerate(items):
         # Объединяем все текстовые поля для поиска
         search_text = " ".join([
             item.get('title', ''),
@@ -19,27 +22,38 @@ def filter_by_keywords(items, keywords):
             item.get('category', '')
         ]).lower()
         
+        # --- ДИАГНОСТИКА: Показываем первые 5 элементов ---
+        if i < 5:
+            print(f"   📝 Элемент {i+1}: текст начинается с '{search_text[:50]}...'")
+        
         # Проверяем наличие каждого ключевого слова
+        matched = False
         for keyword in keywords:
             if re.search(keyword.lower(), search_text):
-                # Добавляем информацию о совпадении
                 item['matched_keyword'] = keyword
                 filtered.append(item)
+                print(f"   ✅ Совпадение! Ключевое слово '{keyword}' найдено в элементе {i+1}")
+                matched = True
                 break  # Добавляем элемент только один раз
+        
+        if not matched and i < 5:
+            print(f"   ❌ Нет совпадений в элементе {i+1}")
     
+    print(f"   📊 После фильтрации: {len(filtered)} элементов")
     return filtered
 
 def filter_by_date(items, days_back=2):
-    """
-    Фильтрует элементы по дате.
-    Возвращает только элементы за последние 'days_back' дней.
-    """
+    """Фильтрует элементы по дате за последние N дней"""
     if days_back <= 0:
         return items
     
     today = datetime.now().date()
     cutoff_date = today - timedelta(days=days_back)
     filtered = []
+    
+    print(f"\n   📅 Фильтрация по дате (последние {days_back} дней)")
+    print(f"   📊 Всего элементов на входе: {len(items)}")
+    print(f"   📅 Дата отсечения: {cutoff_date}")
     
     for item in items:
         item_date = item.get('date')
@@ -63,15 +77,17 @@ def filter_by_date(items, days_back=2):
         if item_date >= cutoff_date:
             filtered.append(item)
     
+    print(f"   📊 После фильтрации по дате: {len(filtered)} элементов")
     return filtered
 
 def filter_duplicates(items):
-    """
-    Удаляет дубликаты по заголовку или тексту.
-    """
+    """Удаляет дубликаты по заголовку или тексту"""
     seen_titles = set()
     seen_texts = set()
     filtered = []
+    
+    print(f"\n   🔄 Удаление дубликатов")
+    print(f"   📊 Всего элементов на входе: {len(items)}")
     
     for item in items:
         title = item.get('title', '').lower().strip()
@@ -91,4 +107,5 @@ def filter_duplicates(items):
             seen_texts.add(text)
         filtered.append(item)
     
+    print(f"   📊 После удаления дубликатов: {len(filtered)} элементов")
     return filtered
