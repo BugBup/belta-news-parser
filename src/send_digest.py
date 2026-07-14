@@ -1,9 +1,13 @@
 # src/send_digest.py
 
 import os
+import sys
 from datetime import datetime
 from src.config import EMAIL_CONFIG
 from src.email_sender import EmailSender
+
+# Добавляем путь к корню проекта
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def main():
     """Отправляет на почту самый свежий дайджест"""
