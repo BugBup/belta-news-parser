@@ -1,0 +1,31 @@
+name: Отправка ежедневного дайджеста
+
+on:
+  schedule:
+    - cron: "0 20 * * *"   # Ежедневно в 20:00 UTC (23:00 Минск)
+  workflow_dispatch:
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Установка зависимостей
+        run: |
+          pip install -r requirements.txt
+
+      - name: Отправка дайджеста на почту
+        run: python src/send_digest.py
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
