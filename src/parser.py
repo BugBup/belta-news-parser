@@ -1,19 +1,53 @@
 import os
+import json
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-from github_models import GitHubModelsClient # Условный импорт для примера
 
 # --- Конфигурация ---
 NEWS_URL = "https://belta.by/all_news"
 OUTPUT_FILE = "digest.md"
 
-# Инициализация клиента для GitHub Models
-# В реальном GitHub Actions переменная GITHUB_TOKEN доступна автоматически
-client = GitHubModelsClient(
-    model="gpt-4o-mini",
-    token=os.environ.get("GITHUB_TOKEN")
-)
+# Получаем токен из переменных окружения (в GitHub Actions он доступен автоматически)
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+# Модель для использования через GitHub Models
+MODEL_NAME = "gpt-4o-mini"  # Бесплатная модель
+
+def call_github_models(prompt):
+    """
+    Отправляет запрос к GitHub Models API.
+    Документация: https://docs.github.com/en/rest/models
+    """
+    if not GITHUB_TOKEN:
+        raise ValueError("GITHUB_TOKEN не найден в переменных окружения")
+
+    # URL для API GitHub Models
+    url = "https://models.inference.github.com/chat/completions"
+    
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Content-Type": "application/json",
+    }
+    
+    payload = {
+        "model": MODEL_NAME,
+        "messages": [
+            {"role": "system", "content": "Ты — полезный ассистент, который составляет дайджесты новостей."},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.5,
+        "max_tokens": 2000,
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка при обращении к GitHub Models: {e}")
+        if hasattr(e, 'response') and e.response:
+            print(f"Ответ сервера: {e.response.text}")
+        return None
 
 def parse_news():
     """Парсит новости с belta.by/all_news"""
@@ -27,29 +61,27 @@ def parse_news():
     soup = BeautifulSoup(response.text, 'html.parser')
     news_items = []
 
-    # Находим все блоки новостей (по структуре сайта)
-    # Используем универсальный поиск: ищем элементы с датой/временем и заголовком
-    for item in soup.find_all(['div', 'article'], class_=lambda c: c and ('news' in c.lower() or 'item' in c.lower())):
+    # Парсим новости из структуры сайта belta.by
+    # Ищем все блоки с классом, содержащим 'news' или 'item'
+    for item in soup.find_all(['div', 'article'], class_=lambda c: c and ('news' in c.lower() or 'item' in c.lower() or 'post' in c.lower())):
         # Извлекаем время
         time_tag = item.find('time')
         time = time_tag.text.strip() if time_tag else ""
-
-        # Извлекаем категорию (обычно перед заголовком)
-        category_tag = item.find('a', class_=lambda c: c and 'category' in c.lower()) or \
-                       item.find('span', class_=lambda c: c and 'category' in c.lower())
+        
+        # Извлекаем категорию
+        category_tag = item.find(['span', 'a'], class_=lambda c: c and ('category' in c.lower() or 'tag' in c.lower()))
         category = category_tag.text.strip() if category_tag else ""
-
+        
         # Извлекаем заголовок
-        title_tag = item.find(['h2', 'h3', 'a'], class_=lambda c: c and ('title' in c.lower() or 'headline' in c.lower())) or \
-                    item.find('a', class_=lambda c: c and 'link' in c.lower())
+        title_tag = item.find(['h2', 'h3', 'a'], class_=lambda c: c and ('title' in c.lower() or 'headline' in c.lower()))
+        if not title_tag:
+            title_tag = item.find('a', class_=lambda c: c and 'link' in c.lower())
         title = title_tag.text.strip() if title_tag else ""
-
+        
         # Извлекаем краткое описание
-        desc_tag = item.find('p', class_=lambda c: c and ('desc' in c.lower() or 'announce' in c.lower())) or \
-                   item.find('div', class_=lambda c: c and ('desc' in c.lower() or 'announce' in c.lower()))
+        desc_tag = item.find(['p', 'div'], class_=lambda c: c and ('desc' in c.lower() or 'announce' in c.lower() or 'text' in c.lower()))
         description = desc_tag.text.strip() if desc_tag else ""
-
-        # Если есть заголовок - добавляем новость
+        
         if title:
             news_items.append({
                 "time": time,
@@ -58,15 +90,14 @@ def parse_news():
                 "description": description
             })
 
-    # Если не нашли новости по классам - пробуем найти по структуре ссылок с датами
+    # Если не нашли через классы - пробуем найти через ссылки с датами
     if not news_items:
         for link in soup.find_all('a', href=True):
-            # Ищем ссылки, ведущие на новости (содержат дату в URL или рядом)
             parent = link.find_parent()
             if parent and parent.find('time'):
                 time = parent.find('time').text.strip()
                 title = link.text.strip()
-                if title and len(title) > 10:  # Фильтруем короткие ссылки
+                if title and len(title) > 10:
                     news_items.append({
                         "time": time,
                         "category": "",
@@ -84,49 +115,52 @@ def create_digest(news_list):
     # Формируем текст для ИИ
     news_text = "Список новостей за сегодня:\n\n"
     for item in news_list:
-        news_text += f"[{item['time']}] {item['category']} - {item['title']}\n"
+        news_text += f"[{item['time']}] "
+        if item['category']:
+            news_text += f"({item['category']}) "
+        news_text += f"{item['title']}\n"
         if item['description']:
             news_text += f"   {item['description']}\n"
+        news_text += "\n"
 
-    # Запрос к ИИ
     prompt = f"""
-    Ты - помощник, который составляет краткий дайджест новостей.
+    Ты - помощник, который составляет краткий дайджест новостей Беларуси.
     На основе приведенного ниже списка новостей за сегодня, составь структурированный дайджест.
 
     Правила:
     1. Сгруппируй новости по темам (политика, экономика, происшествия, общество, культура, спорт, мир и т.д.).
     2. Для каждой группы напиши 1-2 предложения, обобщающие события.
     3. В конце добавь раздел "Главное", выделив 2-3 самые важные новости дня.
-    4. Используй формат Markdown для структурирования.
+    4. Используй формат Markdown для структурирования (заголовки, списки).
 
+    Новости:
     {news_text}
     """
 
-    try:
-        response = client.chat_completion(
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.5
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        print(f"Ошибка при обращении к ИИ: {e}")
-        return f"Не удалось сгенерировать дайджест.\n\n{news_text}"
+    print("Отправляю запрос к GitHub Models...")
+    response = call_github_models(prompt)
+    
+    if response and 'choices' in response:
+        return response['choices'][0]['message']['content']
+    else:
+        print("Не удалось получить ответ от модели. Возвращаю сырые новости.")
+        return f"**Не удалось сгенерировать дайджест.**\n\n{news_text}"
 
 def save_digest(digest):
     """Сохраняет дайджест в файл"""
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        f.write(f"# Дайджест новостей Беларуси\n\n")
+        f.write(f"# 📰 Дайджест новостей Беларуси\n\n")
         f.write(f"**Дата:** {datetime.now().strftime('%d.%m.%Y')}\n\n")
         f.write(digest)
         f.write(f"\n\n---\n*Сгенерировано автоматически {datetime.now().strftime('%H:%M:%S')}*")
 
 def main():
-    print("Начинаю парсинг новостей с belta.by...")
+    print("🚀 Начинаю парсинг новостей с belta.by...")
     news = parse_news()
-    print(f"Найдено новостей: {len(news)}")
+    print(f"📊 Найдено новостей: {len(news)}")
 
     if news:
-        print("Формирую дайджест через ИИ...")
+        print("🧠 Формирую дайджест через GitHub Models...")
         digest = create_digest(news)
         save_digest(digest)
         print(f"✅ Дайджест сохранен в файл {OUTPUT_FILE}")
