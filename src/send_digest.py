@@ -3,11 +3,13 @@
 import os
 import sys
 from datetime import datetime
-from src.config import EMAIL_CONFIG
-from src.email_sender import EmailSender
 
 # Добавляем путь к корню проекта
+# Это нужно, чтобы Python мог найти модуль src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.config import EMAIL_CONFIG
+from src.email_sender import EmailSender
 
 def main():
     """Отправляет на почту самый свежий дайджест"""
@@ -34,8 +36,12 @@ def main():
     print(f"📄 Найден дайджест: {latest_digest_path}")
     
     # Читаем содержимое
-    with open(latest_digest_path, 'r', encoding='utf-8') as f:
-        digest_content = f.read()
+    try:
+        with open(latest_digest_path, 'r', encoding='utf-8') as f:
+            digest_content = f.read()
+    except Exception as e:
+        print(f"❌ Ошибка чтения файла: {e}")
+        return
     
     # Отправляем
     sender = EmailSender(EMAIL_CONFIG)
