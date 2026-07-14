@@ -33,7 +33,7 @@ class TelegramParser(BaseParser):
             print(f"   ✅ Статус: {response.status_code}, длина: {len(response.text)} символов")
             return response.text
         except Exception as e:
-            print(f"   ❌ Ошибка загрузки: {e}")
+            print(f"   ❌ Ошибка загрузки Telegram-канала {self.source.get('name')}: {e}")
             return None
     
     def parse_data(self, raw_html):
@@ -44,63 +44,35 @@ class TelegramParser(BaseParser):
         soup = BeautifulSoup(raw_html, 'html.parser')
         messages = []
         
-        # --- ДИАГНОСТИКА: Ищем все возможные блоки сообщений ---
-        # Способ 1: Ищем div с классом, содержащим 'message'
-        message_divs = soup.find_all('div', class_=lambda c: c and 'message' in c.lower() if c else False)
-        print(f"   📋 Найдено div с 'message': {len(message_divs)}")
+        # --- ИЩЕМ БЛОКИ СООБЩЕНИЙ ---
+        # Используем основной класс Telegram
+        message_divs = soup.find_all('div', class_='tgme_widget_message')
+        print(f"   📋 Найдено блоков сообщений: {len(message_divs)}")
         
-        # Способ 2: Ищем div с классом, содержащим 'post'
-        post_divs = soup.find_all('div', class_=lambda c: c and 'post' in c.lower() if c else False)
-        print(f"   📋 Найдено div с 'post': {len(post_divs)}")
-        
-        # Способ 3: Ищем div с классом 'tgme_widget_message' (классический класс Telegram)
-        tg_divs = soup.find_all('div', class_='tgme_widget_message')
-        print(f"   📋 Найдено div с 'tgme_widget_message': {len(tg_divs)}")
-        
-        # --- ПАРСИНГ: Используем все найденные способы ---
-        all_candidates = []
-        all_candidates.extend(message_divs)
-        all_candidates.extend(post_divs)
-        all_candidates.extend(tg_divs)
-        
-        # Удаляем дубликаты (по id или по содержимому)
-        seen = set()
-        unique_candidates = []
-        for div in all_candidates:
-            div_id = div.get('id', '')
-            if div_id and div_id in seen:
-                continue
-            if div_id:
-                seen.add(div_id)
-            unique_candidates.append(div)
-        
-        print(f"   📋 Уникальных кандидатов: {len(unique_candidates)}")
-        
-        for message_div in unique_candidates:
-            # Извлекаем текст сообщения
-            text_div = message_div.find('div', class_=lambda c: c and ('text' in c.lower() or 'message' in c.lower()) if c else False)
-            if not text_div:
-                text_div = message_div.find('div', class_='tgme_widget_message_text')
-            
+        for message_div in message_divs:
+            # --- ИЗВЛЕКАЕМ ТЕКСТ СООБЩЕНИЯ ---
+            text_div = message_div.find('div', class_='tgme_widget_message_text')
             if not text_div:
                 continue
             
             text = text_div.get_text(strip=True)
             
-            # Пропускаем очень короткие сообщения
-            if len(text) < 5:
+            # Пропускаем очень короткие сообщения (меньше 10 символов)
+            if len(text) < 10:
                 continue
             
-            # Извлекаем дату
-            date_div = message_div.find('div', class_=lambda c: c and 'date' in c.lower() if c else False)
-            date_str = date_div.get_text(strip=True) if date_div else ""
+            # --- ИЗВЛЕКАЕМ ДАТУ И ВРЕМЯ ---
+            date_tag = message_div.find('time', class_='time')
+            date_str = ""
+            if date_tag:
+                date_str = date_tag.get('datetime', '')
             
-            # Извлекаем ссылку на сообщение
-            link_tag = message_div.find('a', class_=lambda c: c and ('message_link' in c.lower() or 'date' in c.lower()) if c else False)
+            # Парсим дату из атрибута datetime
+            parsed_date = self._parse_telegram_datetime(date_str)
+            
+            # --- ИЗВЛЕКАЕМ ССЫЛКУ ---
+            link_tag = message_div.find('a', class_='tgme_widget_message_date')
             message_url = link_tag.get('href') if link_tag else None
-            
-            # Парсим дату
-            parsed_date = self._parse_telegram_date(date_str)
             
             messages.append({
                 "source": self.source.get('name', 'Telegram'),
@@ -111,32 +83,26 @@ class TelegramParser(BaseParser):
                 "raw_html": str(text_div)
             })
         
+        # --- ДИАГНОСТИКА ---
         print(f"   ✅ Спарсено сообщений: {len(messages)}")
-        
-        # --- ДИАГНОСТИКА: Показываем первые 3 сообщения ---
         for i, msg in enumerate(messages[:3]):
-            print(f"   📝 Пример {i+1}: {msg['text'][:100]}...")
+            print(f"   📝 Сообщение {i+1}: {msg['text'][:80]}...")
+            print(f"      Дата: {msg['date']}")
         
         return messages
     
-    def _parse_telegram_date(self, date_str):
-        """Парсит дату из Telegram (формат может быть разным)"""
-        if not date_str:
+    def _parse_telegram_datetime(self, datetime_str):
+        """
+        Парсит дату из атрибута datetime тега time.
+        Формат: 2026-07-09T09:10:19+00:00
+        """
+        if not datetime_str:
             return datetime.now()
         
-        # Пробуем разные форматы
-        formats = [
-            "%b %d, %Y",      # Feb 15, 2025
-            "%Y-%m-%d",       # 2025-02-15
-            "%d.%m.%Y",       # 15.02.2025
-            "%H:%M",          # 15:30 (текущий день)
-        ]
-        
-        for fmt in formats:
-            try:
-                return datetime.strptime(date_str.strip(), fmt)
-            except:
-                continue
-        
-        # Если не удалось распарсить, возвращаем сегодня
-        return datetime.now()
+        try:
+            # Убираем временную зону (+00:00) для простоты
+            dt_str = datetime_str.split('+')[0]
+            return datetime.fromisoformat(dt_str)
+        except:
+            # Если не удалось распарсить, возвращаем сегодня
+            return datetime.now()
