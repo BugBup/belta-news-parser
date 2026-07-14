@@ -38,4 +38,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Автоматическое обновление дайджеста"
-          file_pattern: "digests/*.md"
+          file_pattern: "digests/*"
