@@ -2,17 +2,16 @@ name: Парсинг новостей и создание дайджеста
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/5 * * * *"   # каждые 5 минут для теста
   workflow_dispatch:
 
 jobs:
   parse-and-digest:
     runs-on: ubuntu-latest
     
-    # ВАЖНО: Добавляем разрешение для доступа к Models API
     permissions:
-      contents: write     # для сохранения файла в репозитории
-      models: read        # для доступа к GitHub Models API
+      contents: write
+      models: read
 
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -33,7 +32,6 @@ jobs:
       - name: Запуск скрипта парсинга
         run: python src/parser.py
         env:
-          # GITHUB_TOKEN теперь автоматически имеет права models: read
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Сохранение дайджеста в репозиторий
