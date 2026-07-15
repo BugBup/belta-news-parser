@@ -2,35 +2,52 @@
 
 import re
 from datetime import datetime, timedelta, date
-import pymorphy2
+import nltk
+from nltk.stem import SnowballStemmer
 
-# Инициализируем морфологический анализатор (один раз при запуске)
-morph = pymorphy2.MorphAnalyzer()
+# Скачиваем нужные данные NLTK (один раз при запуске)
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
+
+# Инициализируем стеммер для русского языка
+stemmer = SnowballStemmer("russian")
 
 def normalize_word(word):
-    """Приводит слово к нормальной форме (лемме)"""
+    """
+    Приводит слово к основе (стему).
+    Например: инвестиции → инвестиц, зелёные → зелён
+    """
     try:
-        parsed = morph.parse(word)[0]
-        return parsed.normal_form
+        return stemmer.stem(word.lower())
     except:
         return word.lower()
 
 def normalize_text(text):
-    """Приводит весь текст к нормальным формам слов"""
+    """
+    Приводит весь текст к основам слов.
+    """
     if not text:
         return ""
+    # Разбиваем на слова, удаляем знаки препинания
     words = re.findall(r'\b[а-яёa-z]+\b', text.lower())
     normalized_words = [normalize_word(word) for word in words]
     return " ".join(normalized_words)
 
 def filter_by_keywords(items, keywords):
     """
-    Фильтрует новости по ключевым словам с морфологическим поиском.
+    Фильтрует новости по ключевым словам со стеммингом.
     """
     filtered = []
     
-    # Нормализуем ключевые слова (один раз для всех)
-    normalized_keywords = [normalize_word(kw) for kw in keywords]
+    # Нормализуем ключевые слова (стемим каждое)
+    normalized_keywords = []
+    for kw in keywords:
+        # Для фраз разбиваем на слова и стемим каждое
+        words = re.findall(r'\b[а-яёa-z]+\b', kw.lower())
+        stemmed_words = [normalize_word(w) for w in words]
+        normalized_keywords.append(" ".join(stemmed_words))
     
     for item in items:
         # Собираем текст для поиска
@@ -41,7 +58,7 @@ def filter_by_keywords(items, keywords):
             item.get('category', '')
         ])
         
-        # Нормализуем текст новости
+        # Нормализуем текст новости (стемим все слова)
         normalized_text = normalize_text(raw_text)
         
         # Проверяем наличие каждого нормализованного ключевого слова
