@@ -18,7 +18,43 @@ SOURCES = {
         "name": "Правительство Беларуси (Telegram)",
         "url": "https://telegram.me/s/government_by",
         "type": "telegram"
+    },
+    "telegram_banki24": {
+        "name": "Банки 24 (Telegram)",
+        "url": "https://telegram.me/s/banki24_news",
+        "type": "telegram"
+    },
+    "telegram_eabr": {
+        "name": "ЕАБР Евразийский банк развития (Telegram)",
+        "url": "https://telegram.me/s/eabr_bank",
+        "type": "telegram"
+    },
+    "telegram_belrynok": {
+        "name": "Белорусы и рынок (Telegram)",
+        "url": "https://telegram.me/s/belrynok",
+        "type": "telegram"
+    },
+    "telegram_egazeta": {
+        "name": "Экономическая газета | Новости экономики Беларуси (Telegram)",
+        "url": "https://telegram.me/s/EGazeta",
+        "type": "telegram"
+    },
+    "telegram_bisi": {
+        "name": "БИСИ | think tank (Telegram)",
+        "url": "https://telegram.me/s/BISRby",
+        "type": "telegram"
+    },
+      "telegram_scst": {
+        "name": "ГКНТ (Telegram)",
+        "url": "https://telegram.me/s/scst_by",
+        "type": "telegram"
+    },
+      "telegram_pul": {
+        "name": "Пул Первого (Telegram)",
+        "url": "https://telegram.me/s/pul_1",
+        "type": "telegram"
     }
+    
 }
 
 # --- Ключевые слова для фильтрации ---
