@@ -4,7 +4,6 @@ import os
 import sys
 import json
 from datetime import datetime
-import traceback
 import re
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -14,6 +13,60 @@ from src.parsers.belta_parser import BeltaParser
 from src.parsers.telegram_parser import TelegramParser
 from src.filters import filter_by_keywords, filter_by_date, filter_duplicates
 from src.digest_generator import DigestGenerator
+
+# --- ПОСТОЯННЫЕ ИМЕНА ФАЙЛОВ ---
+DATE_FILTERED_FILE = "digests/after_date_filter.json"
+FINAL_FILTERED_FILE = "digests/final_filtered.json"
+
+def append_to_json_file(filename, new_items, stats, keywords_used):
+    """Дополняет JSON-файл новыми данными, не перезаписывая его"""
+    os.makedirs("digests", exist_ok=True)
+    
+    # Загружаем существующие данные, если файл есть
+    existing_data = {"statistics": stats, "items": [], "keywords": keywords_used}
+    
+    if os.path.exists(filename):
+        try:
+            with open(filename, 'r', encoding='utf-8') as f:
+                existing_data = json.load(f)
+            print(f"   📂 Файл {filename} загружен, уже есть {len(existing_data.get('items', []))} записей")
+        except:
+            print(f"   ⚠️ Не удалось прочитать {filename}, создаю новый")
+    
+    # Преобразуем даты в строки для JSON
+    export_items = []
+    for item in new_items:
+        export_item = item.copy()
+        if 'date' in export_item and isinstance(export_item['date'], datetime):
+            export_item['date'] = export_item['date'].isoformat()
+        export_items.append(export_item)
+    
+    # Добавляем новые элементы к существующим
+    if 'items' in existing_data and isinstance(existing_data['items'], list):
+        existing_items = existing_data['items']
+    else:
+        existing_items = []
+    
+    # Удаляем дубликаты по заголовку (чтобы не добавлять одно и то же)
+    existing_titles = {item.get('title', '') for item in existing_items}
+    new_unique_items = [item for item in export_items if item.get('title', '') not in existing_titles]
+    
+    if new_unique_items:
+        existing_items.extend(new_unique_items)
+        existing_data['items'] = existing_items
+        existing_data['statistics'] = stats
+        existing_data['keywords'] = keywords_used
+        existing_data['last_updated'] = datetime.now().isoformat()
+        
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(existing_data, f, ensure_ascii=False, indent=2)
+            print(f"   ✅ Добавлено {len(new_unique_items)} новых записей в {filename}")
+            print(f"   📊 Всего записей в файле: {len(existing_items)}")
+        except Exception as e:
+            print(f"   ❌ Ошибка при сохранении в {filename}: {e}")
+    else:
+        print(f"   ℹ️ Новых записей нет, файл {filename} не обновлён")
 
 def main():
     print("🚀 Запуск парсинга новостей...")
@@ -44,61 +97,26 @@ def main():
     
     print(f"\n📊 Всего собрано элементов: {len(all_items)}")
     
-    # --- ДИАГНОСТИКА: показываем первые 5 элементов ---
-    print("\n🔍 ДИАГНОСТИКА: Первые 5 элементов (текст для поиска):")
-    for i, item in enumerate(all_items[:5]):
-        search_text = " ".join([
-            item.get('title', ''),
-            item.get('description', ''),
-            item.get('text', ''),
-            item.get('category', '')
-        ])
-        print(f"   {i+1}. {search_text[:100]}...")
-    
-    # 2. Фильтрация по дате (первый этап)
+    # 2. Фильтрация по дате
     print("\n🔍 Фильтрация по дате...")
     filtered_by_date = filter_by_date(all_items, LOOKBACK_DAYS)
     print(f"   ✅ После фильтрации по дате: {len(filtered_by_date)} элементов")
     
-    # --- СОХРАНЯЕМ ДАННЫЕ ПОСЛЕ ФИЛЬТРАЦИИ ПО ДАТЕ (ДО КЛЮЧЕВЫХ СЛОВ) ---
-    save_items_with_stats(
-        items=filtered_by_date,
-        filename_prefix="after_date_filter",
-        stats={
+    # --- СОХРАНЯЕМ В ПОСТОЯННЫЙ ФАЙЛ after_date_filter.json (ДОПОЛНЯЕМ) ---
+    append_to_json_file(
+        DATE_FILTERED_FILE,
+        filtered_by_date,
+        {
             "stage": "after_date_filter",
             "total_before": len(all_items),
             "total_after": len(filtered_by_date),
-            "date_cutoff": LOOKBACK_DAYS
-        }
+            "date_cutoff": LOOKBACK_DAYS,
+            "timestamp": datetime.now().isoformat()
+        },
+        KEYWORDS
     )
     
-    # --- ДИАГНОСТИКА: проверяем, есть ли ключевые слова в этих данных ---
-    print("\n🔍 ДИАГНОСТИКА: Проверка наличия ключевых слов в данных после фильтрации по дате:")
-    keyword_found = False
-    for kw in KEYWORDS:
-        count = 0
-        for item in filtered_by_date[:20]:  # Проверяем первые 20
-            search_text = " ".join([
-                item.get('title', ''),
-                item.get('description', ''),
-                item.get('text', ''),
-                item.get('category', '')
-            ]).lower()
-            if re.search(kw.lower(), search_text):
-                count += 1
-        if count > 0:
-            print(f"   ✅ Ключевое слово '{kw}' найдено в {count} элементах (из первых 20)")
-            keyword_found = True
-        else:
-            print(f"   ❌ Ключевое слово '{kw}' не найдено в первых 20 элементах")
-    
-    if not keyword_found:
-        print("\n   ⚠️ ВНИМАНИЕ: В отфильтрованных по дате данных нет ключевых слов!")
-        print("   💡 Это значит, что либо в новостях действительно нет этих слов,")
-        print("   💡 либо парсер не извлекает текст правильно.")
-        print("   💡 Проверьте файл after_date_filter_*.json в папке digests.")
-    
-    # 3. Фильтрация по ключевым словам (второй этап)
+    # 3. Фильтрация по ключевым словам
     print("\n🔍 Фильтрация по ключевым словам...")
     filtered_by_keywords = filter_by_keywords(filtered_by_date, KEYWORDS)
     print(f"   ✅ После фильтрации по ключевым словам: {len(filtered_by_keywords)} элементов")
@@ -108,17 +126,19 @@ def main():
     filtered_items = filter_duplicates(filtered_by_keywords)
     print(f"   ✅ После удаления дубликатов: {len(filtered_items)} элементов")
     
-    # --- СОХРАНЯЕМ ИТОГОВЫЕ ОТФИЛЬТРОВАННЫЕ ДАННЫЕ ---
-    save_items_with_stats(
-        items=filtered_items,
-        filename_prefix="final_filtered",
-        stats={
+    # --- СОХРАНЯЕМ В ПОСТОЯННЫЙ ФАЙЛ final_filtered.json (ДОПОЛНЯЕМ) ---
+    append_to_json_file(
+        FINAL_FILTERED_FILE,
+        filtered_items,
+        {
             "stage": "final",
             "total_collected": len(all_items),
             "after_date_filter": len(filtered_by_date),
             "after_keyword_filter": len(filtered_by_keywords),
-            "after_dedup": len(filtered_items)
-        }
+            "after_dedup": len(filtered_items),
+            "timestamp": datetime.now().isoformat()
+        },
+        KEYWORDS
     )
     
     if not filtered_items:
@@ -135,35 +155,6 @@ def main():
     # 6. Сохранение дайджеста
     save_digest_file(digest_text)
     print("\n✅ Готово!")
-
-def save_items_with_stats(items, filename_prefix, stats):
-    """Сохраняет элементы с метаданными в файл"""
-    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    os.makedirs("digests", exist_ok=True)
-    filename = f"digests/{filename_prefix}_{timestamp}.json"
-    
-    # Преобразуем даты для JSON
-    export_items = []
-    for item in items:
-        export_item = item.copy()
-        if 'date' in export_item and isinstance(export_item['date'], datetime):
-            export_item['date'] = export_item['date'].isoformat()
-        export_items.append(export_item)
-    
-    export_data = {
-        "statistics": stats,
-        "items": export_items,
-        "keywords": KEYWORDS
-    }
-    
-    try:
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(export_data, f, ensure_ascii=False, indent=2)
-        
-        print(f"\n💾 Данные сохранены в {filename}")
-        print(f"   📊 Элементов: {len(export_items)}")
-    except Exception as e:
-        print(f"   ❌ Ошибка при сохранении: {e}")
 
 def save_digest_file(content):
     """Сохраняет дайджест в файл"""
