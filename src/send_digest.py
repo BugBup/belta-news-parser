@@ -4,36 +4,52 @@ import os
 import sys
 from datetime import datetime
 
-# Добавляем путь к корню проекта
-# Это нужно, чтобы Python мог найти модуль src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.config import EMAIL_CONFIG
 from src.email_sender import EmailSender
 
 def main():
-    """Отправляет на почту самый свежий дайджест"""
     print("📧 Запуск отправки email...")
     
-    # Находим самый свежий файл дайджеста
-    digest_files = []
+    # Находим самый свежий файл дайджеста за сегодня
+    today = datetime.now().strftime('%Y-%m-%d')
     digests_dir = "digests"
     
-    if os.path.exists(digests_dir):
+    if not os.path.exists(digests_dir):
+        print("⚠️ Папка digests не найдена")
+        return
+    
+    # Ищем файлы дайджеста за сегодня
+    today_files = []
+    for file in os.listdir(digests_dir):
+        if file.startswith("digest-") and file.endswith(".md"):
+            file_path = os.path.join(digests_dir, file)
+            # Проверяем, что файл за сегодня
+            if today in file:
+                today_files.append((file_path, os.path.getmtime(file_path)))
+    
+    # Если нет файлов за сегодня, берём самый свежий из всех
+    if not today_files:
+        print("⚠️ Файлов за сегодня не найдено, ищу самый свежий...")
+        all_files = []
         for file in os.listdir(digests_dir):
             if file.startswith("digest-") and file.endswith(".md"):
                 file_path = os.path.join(digests_dir, file)
-                digest_files.append((file_path, os.path.getmtime(file_path)))
+                all_files.append((file_path, os.path.getmtime(file_path)))
+        
+        if not all_files:
+            print("⚠️ Дажестов для отправки не найдено.")
+            return
+        
+        all_files.sort(key=lambda x: x[1])
+        latest_digest_path = all_files[-1][0]
+    else:
+        # Сортируем по времени и берём самый свежий
+        today_files.sort(key=lambda x: x[1])
+        latest_digest_path = today_files[-1][0]
     
-    if not digest_files:
-        print("⚠️ Дажестов для отправки не найдено.")
-        return
-    
-    # Сортируем по времени изменения (самый свежий последний)
-    digest_files.sort(key=lambda x: x[1])
-    latest_digest_path = digest_files[-1][0]
-    
-    print(f"📄 Найден дайджест: {latest_digest_path}")
+    print(f"📄 Отправляю дайджест: {latest_digest_path}")
     
     # Читаем содержимое
     try:
