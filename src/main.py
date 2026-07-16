@@ -19,7 +19,7 @@ DATE_FILTERED_FILE = "digests/after_date_filter.json"
 FINAL_FILTERED_FILE = "digests/final_filtered.json"
 
 def append_to_json_file(filename, new_items, stats, keywords_used):
-    """Дополняет JSON-файл новыми данными без дубликатов"""
+    """Дополняет JSON-файл новыми данными без дубликатов (только по title)"""
     os.makedirs("digests", exist_ok=True)
     
     # Загружаем существующие данные, если файл есть
@@ -47,24 +47,26 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
     else:
         existing_items = []
     
-    # --- УЛУЧШЕННАЯ ПРОВЕРКА ДУБЛИКАТОВ ---
-    # Создаём множество существующих заголовков (в нижнем регистре, обрезанные)
+    # --- ПРОВЕРКА ДУБЛИКАТОВ ТОЛЬКО ПО ЗАГОЛОВКУ (title) ---
+    # Создаём множество существующих заголовков (в нижнем регистре, обрезанные пробелы)
     existing_titles = set()
     for item in existing_items:
-        title = item.get('title', '').lower().strip()
+        title = item.get('title', '').strip()
         if title:
-            existing_titles.add(title)
+            existing_titles.add(title.lower())
     
     # Фильтруем новые элементы, которых ещё нет
     new_unique_items = []
     for item in export_items:
-        title = item.get('title', '').lower().strip()
-        # Проверяем по заголовку
-        if title and title not in existing_titles:
+        title = item.get('title', '').strip()
+        # Проверяем по заголовку (без учёта регистра)
+        if title and title.lower() not in existing_titles:
             new_unique_items.append(item)
-            existing_titles.add(title)  # Добавляем, чтобы не дублировать в рамках одной партии
+            existing_titles.add(title.lower())  # Добавляем, чтобы не дублировать в рамках одной партии
         else:
-            print(f"   ℹ️ Дубликат: '{item.get('title', '')[:40]}...'")
+            # Для диагностики показываем только если дубликат найден
+            if title:
+                print(f"   ℹ️ Дубликат по заголовку: '{title[:40]}...'")
     
     if new_unique_items:
         existing_items.extend(new_unique_items)
