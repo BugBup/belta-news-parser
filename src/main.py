@@ -19,7 +19,7 @@ DATE_FILTERED_FILE = "digests/after_date_filter.json"
 FINAL_FILTERED_FILE = "digests/final_filtered.json"
 
 def append_to_json_file(filename, new_items, stats, keywords_used):
-    """Дополняет JSON-файл новыми данными, не перезаписывая его"""
+    """Дополняет JSON-файл новыми данными без дубликатов"""
     os.makedirs("digests", exist_ok=True)
     
     # Загружаем существующие данные, если файл есть
@@ -47,9 +47,24 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
     else:
         existing_items = []
     
-    # Удаляем дубликаты по заголовку (чтобы не добавлять одно и то же)
-    existing_titles = {item.get('title', '') for item in existing_items}
-    new_unique_items = [item for item in export_items if item.get('title', '') not in existing_titles]
+    # --- УЛУЧШЕННАЯ ПРОВЕРКА ДУБЛИКАТОВ ---
+    # Создаём множество существующих заголовков (в нижнем регистре, обрезанные)
+    existing_titles = set()
+    for item in existing_items:
+        title = item.get('title', '').lower().strip()
+        if title:
+            existing_titles.add(title)
+    
+    # Фильтруем новые элементы, которых ещё нет
+    new_unique_items = []
+    for item in export_items:
+        title = item.get('title', '').lower().strip()
+        # Проверяем по заголовку
+        if title and title not in existing_titles:
+            new_unique_items.append(item)
+            existing_titles.add(title)  # Добавляем, чтобы не дублировать в рамках одной партии
+        else:
+            print(f"   ℹ️ Дубликат: '{item.get('title', '')[:40]}...'")
     
     if new_unique_items:
         existing_items.extend(new_unique_items)
