@@ -19,7 +19,7 @@ DATE_FILTERED_FILE = "digests/after_date_filter.json"
 FINAL_FILTERED_FILE = "digests/final_filtered.json"
 
 def append_to_json_file(filename, new_items, stats, keywords_used):
-    """Дополняет JSON-файл новыми данными (универсальная проверка дубликатов)"""
+    """Дополняет JSON-файл новыми данными с гибкой проверкой дубликатов"""
     os.makedirs("digests", exist_ok=True)
     
     # Загружаем существующие данные
@@ -47,36 +47,63 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
     else:
         existing_items = []
     
-    # --- УНИВЕРСАЛЬНАЯ ПРОВЕРКА ДУБЛИКАТОВ ПО source + title ---
+    # --- ГИБКАЯ ПРОВЕРКА ДУБЛИКАТОВ ---
+    # Для БелТА: используем source + title
+    # Для Telegram: используем source + text (первые 100 символов)
     existing_keys = set()
     for item in existing_items:
         source = item.get('source', '').strip()
-        title = item.get('title', '').strip()
-        if source and title:
-            key = f"{source.lower()}|{title.lower()}"
-            existing_keys.add(key)
+        
+        # Определяем ключ в зависимости от источника
+        if 'БелТА' in source:
+            title = item.get('title', '').strip()
+            if source and title:
+                key = f"{source.lower()}|{title.lower()}"
+                existing_keys.add(key)
+        else:
+            # Для Telegram и других источников
+            text = item.get('text', '').strip()
+            if source and text:
+                # Берём первые 100 символов текста как ключ
+                text_key = text[:100].lower()
+                key = f"{source.lower()}|{text_key}"
+                existing_keys.add(key)
+    
+    print(f"   🗝️ Существующих ключей: {len(existing_keys)}")
     
     # Фильтруем новые элементы
     new_unique_items = []
     for item in export_items:
         source = item.get('source', '').strip()
-        title = item.get('title', '').strip()
         
         if not source:
             print(f"   ⚠️ Пропуск: нет источника у новости")
             continue
-            
-        if not title:
-            print(f"   ⚠️ Пропуск: нет заголовка у новости из {source}")
-            continue
         
-        key = f"{source.lower()}|{title.lower()}"
+        # Определяем ключ для нового элемента
+        if 'БелТА' in source:
+            title = item.get('title', '').strip()
+            if not title:
+                print(f"   ⚠️ Пропуск: нет заголовка у новости из {source}")
+                continue
+            key = f"{source.lower()}|{title.lower()}"
+        else:
+            # Для Telegram и других источников
+            text = item.get('text', '').strip()
+            if not text:
+                print(f"   ⚠️ Пропуск: нет текста у новости из {source}")
+                continue
+            # Берём первые 100 символов текста как ключ
+            text_key = text[:100].lower()
+            key = f"{source.lower()}|{text_key}"
+        
+        # Проверяем дубликат
         if key in existing_keys:
-            print(f"   ℹ️ Дубликат: '{title[:40]}...' (источник: {source})")
+            print(f"   ℹ️ Дубликат: '{key[:50]}...' (источник: {source})")
         else:
             new_unique_items.append(item)
             existing_keys.add(key)
-            print(f"   ✅ Новая запись: '{title[:40]}...' (источник: {source})")
+            print(f"   ✅ Новая запись: '{key[:50]}...' (источник: {source})")
     
     if new_unique_items:
         existing_items.extend(new_unique_items)
