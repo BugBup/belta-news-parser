@@ -3,8 +3,8 @@
 import os
 import sys
 import json
-from datetime import datetime
 import re
+from datetime import datetime, date
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -19,10 +19,10 @@ DATE_FILTERED_FILE = "digests/after_date_filter.json"
 FINAL_FILTERED_FILE = "digests/final_filtered.json"
 
 def append_to_json_file(filename, new_items, stats, keywords_used):
-    """Дополняет JSON-файл новыми данными без дубликатов (только по title)"""
+    """Дополняет JSON-файл новыми данными (универсальная проверка дубликатов)"""
     os.makedirs("digests", exist_ok=True)
     
-    # Загружаем существующие данные, если файл есть
+    # Загружаем существующие данные
     existing_data = {"statistics": stats, "items": [], "keywords": keywords_used}
     
     if os.path.exists(filename):
@@ -30,8 +30,8 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
             with open(filename, 'r', encoding='utf-8') as f:
                 existing_data = json.load(f)
             print(f"   📂 Файл {filename} загружен, уже есть {len(existing_data.get('items', []))} записей")
-        except:
-            print(f"   ⚠️ Не удалось прочитать {filename}, создаю новый")
+        except Exception as e:
+            print(f"   ⚠️ Не удалось прочитать {filename}: {e}, создаю новый")
     
     # Преобразуем даты в строки для JSON
     export_items = []
@@ -41,32 +41,42 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
             export_item['date'] = export_item['date'].isoformat()
         export_items.append(export_item)
     
-    # Добавляем новые элементы к существующим
+    # Получаем существующие элементы
     if 'items' in existing_data and isinstance(existing_data['items'], list):
         existing_items = existing_data['items']
     else:
         existing_items = []
     
-    # --- ПРОВЕРКА ДУБЛИКАТОВ ТОЛЬКО ПО ЗАГОЛОВКУ (title) ---
-    # Создаём множество существующих заголовков (в нижнем регистре, обрезанные пробелы)
-    existing_titles = set()
+    # --- УНИВЕРСАЛЬНАЯ ПРОВЕРКА ДУБЛИКАТОВ ПО source + title ---
+    existing_keys = set()
     for item in existing_items:
+        source = item.get('source', '').strip()
         title = item.get('title', '').strip()
-        if title:
-            existing_titles.add(title.lower())
+        if source and title:
+            key = f"{source.lower()}|{title.lower()}"
+            existing_keys.add(key)
     
-    # Фильтруем новые элементы, которых ещё нет
+    # Фильтруем новые элементы
     new_unique_items = []
     for item in export_items:
+        source = item.get('source', '').strip()
         title = item.get('title', '').strip()
-        # Проверяем по заголовку (без учёта регистра)
-        if title and title.lower() not in existing_titles:
-            new_unique_items.append(item)
-            existing_titles.add(title.lower())  # Добавляем, чтобы не дублировать в рамках одной партии
+        
+        if not source:
+            print(f"   ⚠️ Пропуск: нет источника у новости")
+            continue
+            
+        if not title:
+            print(f"   ⚠️ Пропуск: нет заголовка у новости из {source}")
+            continue
+        
+        key = f"{source.lower()}|{title.lower()}"
+        if key in existing_keys:
+            print(f"   ℹ️ Дубликат: '{title[:40]}...' (источник: {source})")
         else:
-            # Для диагностики показываем только если дубликат найден
-            if title:
-                print(f"   ℹ️ Дубликат по заголовку: '{title[:40]}...'")
+            new_unique_items.append(item)
+            existing_keys.add(key)
+            print(f"   ✅ Новая запись: '{title[:40]}...' (источник: {source})")
     
     if new_unique_items:
         existing_items.extend(new_unique_items)
@@ -85,12 +95,21 @@ def append_to_json_file(filename, new_items, stats, keywords_used):
     else:
         print(f"   ℹ️ Новых записей нет, файл {filename} не обновлён")
 
+def save_digest_file(content):
+    """Сохраняет дайджест в файл"""
+    os.makedirs("digests", exist_ok=True)
+    filename = f"digests/digest-{datetime.now().strftime('%Y-%m-%d')}.md"
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"💾 Дайджест сохранен в {filename}")
+    return filename
+
 def main():
     print("🚀 Запуск парсинга новостей...")
     
-    # 1. Сбор данных из всех источников
     all_items = []
     
+    # Сбор данных из всех источников
     for source_key, source_config in SOURCES.items():
         print(f"\n📡 Обработка источника: {source_config.get('name', source_key)}")
         
@@ -114,73 +133,133 @@ def main():
     
     print(f"\n📊 Всего собрано элементов: {len(all_items)}")
     
-    # 2. Фильтрация по дате
-    print("\n🔍 Фильтрация по дате...")
-    filtered_by_date = filter_by_date(all_items, LOOKBACK_DAYS)
-    print(f"   ✅ После фильтрации по дате: {len(filtered_by_date)} элементов")
+    # --- РАЗДЕЛЯЕМ НОВОСТИ ПО ИСТОЧНИКАМ ---
+    belta_items = []
+    telegram_items = []
     
-    # --- СОХРАНЯЕМ В ПОСТОЯННЫЙ ФАЙЛ after_date_filter.json (ДОПОЛНЯЕМ) ---
+    for item in all_items:
+        source = item.get('source', '')
+        if 'БелТА' in source:
+            belta_items.append(item)
+        else:
+            telegram_items.append(item)
+    
+    print(f"\n📊 Распределение по источникам:")
+    print(f"   БелТА: {len(belta_items)} новостей")
+    print(f"   Telegram: {len(telegram_items)} новостей")
+    
+    # --- ДИАГНОСТИКА: показываем 5 самых свежих постов ---
+    if all_items:
+        all_sorted = sorted(all_items, key=lambda x: x.get('date', datetime.min), reverse=True)
+        print(f"\n📰 5 САМЫХ СВЕЖИХ ПОСТОВ ИЗ ВСЕХ ИСТОЧНИКОВ:")
+        for i, item in enumerate(all_sorted[:5]):
+            source = item.get('source', 'unknown')
+            date_str = item.get('date', '')
+            if isinstance(date_str, datetime):
+                date_str = date_str.strftime('%Y-%m-%d %H:%M')
+            elif isinstance(date_str, date):
+                date_str = date_str.strftime('%Y-%m-%d')
+            title = item.get('title', 'Без заголовка')[:60]
+            print(f"      {i+1}. [{source}] [{date_str}] {title}...")
+    
+    # --- ФИЛЬТРАЦИЯ ПО ДАТЕ (для всех) ---
+    print("\n🔍 Фильтрация по дате...")
+    filtered_by_date_all = filter_by_date(all_items, LOOKBACK_DAYS)
+    print(f"   ✅ После фильтрации по дате (все): {len(filtered_by_date_all)} элементов")
+    
+    # --- РАЗДЕЛЯЕМ ОТФИЛЬТРОВАННЫЕ ПО ДАТЕ ---
+    belta_filtered_by_date = []
+    telegram_filtered_by_date = []
+    
+    for item in filtered_by_date_all:
+        source = item.get('source', '')
+        if 'БелТА' in source:
+            belta_filtered_by_date.append(item)
+        else:
+            telegram_filtered_by_date.append(item)
+    
+    print(f"\n   После фильтрации по дате:")
+    print(f"      БелТА: {len(belta_filtered_by_date)} новостей")
+    print(f"      Telegram: {len(telegram_filtered_by_date)} новостей")
+    
+    # --- ФИЛЬТРАЦИЯ ПО КЛЮЧЕВЫМ СЛОВАМ (для всех) ---
+    print("\n🔍 Фильтрация по ключевым словам...")
+    belta_filtered_by_keywords = filter_by_keywords(belta_filtered_by_date, KEYWORDS)
+    telegram_filtered_by_keywords = filter_by_keywords(telegram_filtered_by_date, KEYWORDS)
+    
+    print(f"\n   После фильтрации по ключевым словам:")
+    print(f"      БелТА: {len(belta_filtered_by_keywords)} новостей")
+    print(f"      Telegram: {len(telegram_filtered_by_keywords)} новостей")
+    
+    # --- УДАЛЕНИЕ ДУБЛИКАТОВ (для всех) ---
+    belta_final = filter_duplicates(belta_filtered_by_keywords)
+    telegram_final = filter_duplicates(telegram_filtered_by_keywords)
+    
+    print(f"\n   После удаления дубликатов:")
+    print(f"      БелТА: {len(belta_final)} новостей")
+    print(f"      Telegram: {len(telegram_final)} новостей")
+    
+    # --- СОХРАНЯЕМ В after_date_filter.json ПО НОВОЙ ЛОГИКЕ ---
+    # Для БелТА: только те, что прошли фильтр по ключевым словам (финальные)
+    # Для Telegram: все, что прошли фильтр по дате (даже если без ключевых слов)
+    
+    items_to_save = belta_final + telegram_filtered_by_date
+    
+    print(f"\n💾 Сохраняем в after_date_filter.json:")
+    print(f"      БелТА (только с ключевыми словами): {len(belta_final)}")
+    print(f"      Telegram (все, что по дате): {len(telegram_filtered_by_date)}")
+    print(f"      Итого: {len(items_to_save)}")
+    
     append_to_json_file(
         DATE_FILTERED_FILE,
-        filtered_by_date,
+        items_to_save,
         {
             "stage": "after_date_filter",
             "total_before": len(all_items),
-            "total_after": len(filtered_by_date),
+            "total_after": len(filtered_by_date_all),
+            "belta_with_keywords": len(belta_final),
+            "telegram_all": len(telegram_filtered_by_date),
             "date_cutoff": LOOKBACK_DAYS,
             "timestamp": datetime.now().isoformat()
         },
         KEYWORDS
     )
     
-    # 3. Фильтрация по ключевым словам
-    print("\n🔍 Фильтрация по ключевым словам...")
-    filtered_by_keywords = filter_by_keywords(filtered_by_date, KEYWORDS)
-    print(f"   ✅ После фильтрации по ключевым словам: {len(filtered_by_keywords)} элементов")
+    # --- ФИНАЛЬНЫЙ ФАЙЛ (все, что прошло все фильтры) ---
+    final_items = belta_final + telegram_final
     
-    # 4. Удаление дубликатов
-    print("\n🔍 Удаление дубликатов...")
-    filtered_items = filter_duplicates(filtered_by_keywords)
-    print(f"   ✅ После удаления дубликатов: {len(filtered_items)} элементов")
+    print(f"\n💾 Сохраняем в final_filtered.json:")
+    print(f"      БелТА: {len(belta_final)}")
+    print(f"      Telegram: {len(telegram_final)}")
+    print(f"      Итого: {len(final_items)}")
     
-    # --- СОХРАНЯЕМ В ПОСТОЯННЫЙ ФАЙЛ final_filtered.json (ДОПОЛНЯЕМ) ---
     append_to_json_file(
         FINAL_FILTERED_FILE,
-        filtered_items,
+        final_items,
         {
             "stage": "final",
             "total_collected": len(all_items),
-            "after_date_filter": len(filtered_by_date),
-            "after_keyword_filter": len(filtered_by_keywords),
-            "after_dedup": len(filtered_items),
+            "after_date_filter": len(filtered_by_date_all),
+            "after_keyword_filter": len(belta_filtered_by_keywords) + len(telegram_filtered_by_keywords),
+            "after_dedup": len(belta_final) + len(telegram_final),
             "timestamp": datetime.now().isoformat()
         },
         KEYWORDS
     )
     
-    if not filtered_items:
+    # --- ГЕНЕРАЦИЯ ДАЙДЖЕСТА (только из финальных) ---
+    if not final_items:
         print("\n⚠️ Новостей по заданным темам не найдено.")
         digest_text = "За последние дни новостей по темам ESG, зеленая экономика, ответственное инвестирование не найдено."
         save_digest_file(digest_text)
         return
     
-    # 5. Генерация дайджеста
     print("\n🧠 Генерация дайджеста через GitHub Models...")
     generator = DigestGenerator()
-    digest_text = generator.create_digest(filtered_items)
+    digest_text = generator.create_digest(final_items)
     
-    # 6. Сохранение дайджеста
     save_digest_file(digest_text)
     print("\n✅ Готово!")
-
-def save_digest_file(content):
-    """Сохраняет дайджест в файл"""
-    os.makedirs("digests", exist_ok=True)
-    filename = f"digests/digest-{datetime.now().strftime('%Y-%m-%d')}.md"
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(content)
-    print(f"💾 Дайджест сохранен в {filename}")
-    return filename
 
 if __name__ == "__main__":
     main()
