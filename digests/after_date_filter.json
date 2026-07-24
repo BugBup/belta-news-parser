@@ -1,12 +1,12 @@
 {
   "statistics": {
     "stage": "after_date_filter",
-    "total_before": 197,
-    "total_after": 157,
+    "total_before": 148,
+    "total_after": 110,
     "belta_with_keywords": 0,
-    "telegram_all": 107,
+    "telegram_all": 110,
     "date_cutoff": 2,
-    "timestamp": "2026-07-24T14:04:52.516630"
+    "timestamp": "2026-07-24T15:41:52.653110"
   },
   "items": [
     {
@@ -15313,6 +15313,46 @@
       "text": "🤔Промышленность или сельское хозяйство?💬Лукашенко указал журналистам на их заблуждение.",
       "url": "https://t.me/pul_1/22074",
       "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA494.png')\"><b>🤔</b></i> Промышленность или сельское хозяйство?</b><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92AC.png')\"><b>💬</b></i> Лукашенко указал журналистам на их заблуждение.</div>"
+    },
+    {
+      "source": "Экономика Беларуси (Telegram)",
+      "date": "2026-07-24T14:15:46",
+      "date_str": "2026-07-24T14:15:46+00:00",
+      "text": "Активнеезадействоватьгосударственный финресурс, чтобы закрепиться на внешних рынкахПрезидент провелсовещаниепо реализации ключевых инвестпроектов за рубежомНовый порядок контроля международных автоперевозокначнетдействовать в Беларуси с 25 июляПравительствоутвердилораспределение квоты на ввоз свечей зажигания без антидемпинговой пошлиныС 1 августа в Беларусиувеличиваютсяразмеры пособия по уходу за ребенком в возрасте до 3 летСредняя зарплата в Беларуси в июнесоставила3104,1 рубляЗерновые и зернобобовые культуры в Беларусиубраныс 18% площадейНамолочено 1453 тыс. т. зерна, средняя урожайность - 40,4 ц/гаКак в Беларуси планируют увеличивать долю продаж отечественных товаровМАРТанонсировалдополнительные мерыВысокое качество продукции — визитная карточка БеларусиПредседатель Госстандартарассказала, за счет чего удается держать эту высокую планку",
+      "url": "https://t.me/econ_gov_by/8735",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Активнее </b><a href=\"https://belta.by/economics/view/ne-stradat-globalizmom-uchastniki-soveschanija-u-lukashenko-ob-investproektah-s-zarubezhnymi-partnerami-792859-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>задействовать</b></a><b> государственный финресурс, чтобы закрепиться на внешних рынках</b><br/>Президент провел <a href=\"https://belta.by/president/view/lukashenko-poruchil-aktivnee-zadejstvovat-gosudarstvennyj-finresurs-chtoby-zastolbitsja-na-vneshnih-792817-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">совещание</a> по реализации ключевых инвестпроектов за рубежом<br/><b> </b><br/><b>Новый порядок контроля международных автоперевозок </b><a href=\"https://primepress.by/news/ekonomika/novyy_poryadok_kontrolya_mezhdunarodnykh_avtoperevozok_nachnet_deystvovat_v_belarusi_s_25_iyulya-55656/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>начнет</b></a><b> действовать в Беларуси с 25 июля</b><br/><br/><b>Правительство </b><a href=\"https://belta.by/economics/view/pravitelstvo-utverdilo-raspredelenie-kvoty-na-vvoz-svechej-zazhiganija-bez-antidempingovoj-poshliny-792865-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>утвердило</b></a><b> распределение квоты на ввоз свечей зажигания без антидемпинговой пошлины</b><br/><br/><b>С 1 августа в Беларуси </b><a href=\"https://belta.by/society/view/s-1-avgusta-v-belarusi-uvelichivajutsja-razmery-posobija-po-uhodu-za-rebenkom-v-vozraste-do-3-let-792826-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>увеличиваются</b></a><b> размеры пособия по уходу за ребенком в возрасте до 3 лет</b><br/><b> </b><br/><b>Средняя зарплата в Беларуси в июне </b><a href=\"https://belta.by/economics/view/belstat-srednjaja-zarplata-v-belarusi-v-ijune-sostavila-31041-rublja-792816-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>составила</b></a><b> 3104,1 рубля</b><br/><b> </b><br/><b>Зерновые и зернобобовые культуры в Беларуси </b><a href=\"https://belta.by/economics/view/zernovye-i-zernobobovye-kultury-v-belarusi-ubrany-s-18-ploschadej-792801-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>убраны</b></a><b> с 18% площадей</b><br/>Намолочено 1453 тыс. т. зерна, средняя урожайность - 40,4 ц/га<br/><b> </b><br/><b>Как в Беларуси планируют увеличивать долю продаж отечественных товаров</b><br/>МАРТ <a href=\"https://belta.by/economics/view/kak-v-belarusi-planirujut-uvelichivat-dolju-prodazh-otechestvennyh-tovarov-rasskazali-v-mart-792740-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">анонсировал</a> дополнительные меры<br/><b> </b><br/><b>Высокое качество продукции — визитная карточка Беларуси</b><br/>Председатель Госстандарта <a href=\"https://www.sb.by/articles/vysokoe-kachestvo-produktsii-vizitnaya-kartochka-belarusi-.html\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">рассказала</a>, за счет чего удается держать эту высокую планку</div>"
+    },
+    {
+      "source": "Экономика Беларуси (Telegram)",
+      "date": "2026-07-24T14:31:30",
+      "date_str": "2026-07-24T14:31:30+00:00",
+      "text": "🕰Пришло время подвести итоги очередной рабочей недели.📑🔍Сегодня вашему вниманиюдайджестза 20-24 июля",
+      "url": "https://t.me/econ_gov_by/8736",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F95B0.png')\"><b>🕰</b></i> Пришло время подвести итоги очередной рабочей недели.<br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9391.png')\"><b>📑</b></i><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F948D.png')\"><b>🔍</b></i>Сегодня вашему вниманию <a href=\"https://economy.gov.by/ru/news-ru/view/rabota-minekonomiki-glavnye-sobytija-proekty-itogi-nedeli-51442-2026\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">дайджест</a> за 20-24 июля</div>"
+    },
+    {
+      "source": "Правительство Беларуси (Telegram)",
+      "date": "2026-07-24T14:29:26",
+      "date_str": "2026-07-24T14:29:26+00:00",
+      "text": "📍Александр Терехов ознакомился с реализацией проекта реконструкции очистных сооружений Солигорска и Солигорского районаПервая очередь объекта уже введена в эксплуатацию, в настоящее время ведется подготовка к реализации второго этапаРеконструкция второй очереди включает полную модернизацию технологического процесса биологической очистки сточных вод и переустройство аэротенков, что в целом позволит повысить эффективность очистки. Реализация проекта обеспечит потребности Солигорска и улучшит экологическую обстановку‼️Особое внимание в ходе посещения Александр Терехов уделил вопросу обращения с осадком сточных вод. Вице-премьер подчеркнул, что цикл переработки должен быть полным - от очистки сточных вод до обработки осадков и их использования. Такой подход позволит не только повысить экологическую безопасность объекта, но и сделать его работу максимально эффективной",
+      "url": "https://t.me/government_by/5072",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5452012686470581398\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F938D.png')\"><b>📍</b></i></tg-emoji><b>Александр Терехов ознакомился с реализацией проекта реконструкции очистных сооружений Солигорска и Солигорского района</b><br/><br/>Первая очередь объекта уже введена в эксплуатацию, в настоящее время ведется подготовка к реализации второго этапа<br/><br/><blockquote>Реконструкция второй очереди включает полную модернизацию технологического процесса биологической очистки сточных вод и переустройство аэротенков, что в целом позволит повысить эффективность очистки. Реализация проекта обеспечит потребности Солигорска и улучшит экологическую обстановку</blockquote><br/><br/><tg-emoji emoji-id=\"5451762118078533566\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E280BC.png')\"><b>‼️</b></i></tg-emoji> Особое внимание в ходе посещения Александр Терехов уделил вопросу обращения с осадком сточных вод. Вице-премьер подчеркнул, что цикл переработки должен быть полным - от очистки сточных вод до обработки осадков и их использования. Такой подход позволит не только повысить экологическую безопасность объекта, но и сделать его работу максимально эффективной</div>"
+    },
+    {
+      "source": "Банки 24 (Telegram)",
+      "date": "2026-07-24T14:45:00",
+      "date_str": "2026-07-24T14:45:00+00:00",
+      "text": "Для клиентов Белкарт завершается акция со скидками на покупки в оz.bуБелкартсообщает, что можно получить скидку 10% в интернет-магазине и приложении оz.bу на товары.Для этого нужно добавить товары в корзину на сайте или в приложении OZ, ввести промокод 7SFERAOZ в поле \"У меня есть код\" и нажать \"Добавить\".Воспользоваться промокодом можно один раз с каждого личного кабинета, число товаров в заказе не ограничено. Срок действия акции — по 31 июля.Скидка действует на все товары в заказе, кроме акционных и товаров из раздела \"Персональная скидка\". Скидки по различным акциям не суммируются.",
+      "url": "https://t.me/banki24_news/13684",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Для клиентов Белкарт завершается акция со скидками на покупки в оz.bу<br/></b><br/>Белкарт <a href=\"https://belkart.by/BELKART/reklamnye-aktsii/skidka-12-v-internet-magazine-i-prilozhenii-oz-by/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">сообщает</a>, что можно получить скидку 10% в интернет-магазине и приложении оz.bу на товары.<br/><br/>Для этого нужно добавить товары в корзину на сайте или в приложении OZ, ввести промокод 7SFERAOZ в поле \"У меня есть код\" и нажать \"Добавить\".<br/><br/>Воспользоваться промокодом можно один раз с каждого личного кабинета, число товаров в заказе не ограничено. Срок действия акции — по 31 июля.<br/><br/>Скидка действует на все товары в заказе, кроме акционных и товаров из раздела \"Персональная скидка\". Скидки по различным акциям не суммируются.</div>"
+    },
+    {
+      "source": "ГКНТ (Telegram)",
+      "date": "2026-07-24T15:17:05",
+      "date_str": "2026-07-24T15:17:05+00:00",
+      "text": "#НЦИС_факты",
+      "url": "https://t.me/scst_by/7844",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><a href=\"?q=%23%D0%9D%D0%A6%D0%98%D0%A1_%D1%84%D0%B0%D0%BA%D1%82%D1%8B\">#НЦИС_факты</a></div>"
     }
   ],
   "keywords": [
@@ -15322,5 +15362,5 @@
     "финансовая отчётность",
     "устойчивое развитие"
   ],
-  "last_updated": "2026-07-24T14:04:52.538903"
+  "last_updated": "2026-07-24T15:41:52.675121"
 }
