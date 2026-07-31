@@ -1,12 +1,12 @@
 {
   "statistics": {
     "stage": "after_date_filter",
-    "total_before": 184,
-    "total_after": 157,
+    "total_before": 136,
+    "total_after": 110,
     "belta_with_keywords": 0,
-    "telegram_all": 107,
+    "telegram_all": 110,
     "date_cutoff": 2,
-    "timestamp": "2026-07-31T14:28:59.800047"
+    "timestamp": "2026-07-31T17:48:37.933003"
   },
   "items": [
     {
@@ -17898,6 +17898,86 @@
       "text": "🥛Нельзя приехать на производство и не продегустировать продукцию.Первый признался, что у него в холодильнике только «Савушкин продукт».😉Кажется, лучше рекламы уже не будет.",
       "url": "https://t.me/pul_1/22185",
       "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA59B.png')\"><b>🥛</b></i> <i>Нельзя приехать на производство и не продегустировать продукцию. </i><br/><br/><b>Первый признался, что у него в холодильнике только «Савушкин продукт». </b><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9889.png')\"><b>😉</b></i> <i>Кажется, лучше рекламы уже не будет.</i></div>"
+    },
+    {
+      "source": "Экономика Беларуси (Telegram)",
+      "date": "2026-07-31T14:31:20",
+      "date_str": "2026-07-31T14:31:20+00:00",
+      "text": "🗓☀️Подводим итоги последней рабочей недели второго месяца лета🔍Ключевые события и факты - вдайджестеза 27-31 июля",
+      "url": "https://t.me/econ_gov_by/8765",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9793.png')\"><b>🗓</b></i> <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29880.png')\"><b>☀️</b></i>Подводим итоги последней рабочей недели второго месяца лета<br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F948D.png')\"><b>🔍</b></i>Ключевые события и факты - в <a href=\"https://economy.gov.by/ru/news-ru/view/rabota-minekonomiki-glavnye-sobytija-proekty-itogi-nedeli-51456-2026\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">дайджесте</a> за 27-31 июля</div>"
+    },
+    {
+      "source": "Правительство Беларуси (Telegram)",
+      "date": "2026-07-31T15:29:29",
+      "date_str": "2026-07-31T15:29:29+00:00",
+      "text": "📄В Беларуси утверждены положения о порядке разработки схем и инвентаризации систем питьевого водоснабжения и водоотведенияСоответствующее постановление подписал Премьер-министрДокументом утверждены:🔘Положение о порядке разработки и утверждения схем питьевого водоснабжения, водоотведения (канализации)Схемы питьевого водоснабжения и водоотведения (канализации) являются основными документами при градостроительном планировании и служат инженерно-технической основой для разработки и актуализации генеральных планов населенных пунктов, с учетом которых определяются резервы и лимиты мощностей действующих систем, прогнозные нагрузки (потребность) для новых микрорайонов и определения технической возможности строительства сетей🔘Положение о порядке проведения инвентаризации систем питьевого водоснабжения, водоотведения (канализации)Инвентаризация систем питьевого водоснабжения, водоотведения (канализации) необходима для получения полной, актуальной и достоверной информации о состоянии систем питьевого водоснабжения и водоотведения (канализации) в регионах в целях обеспечения эффективного управления и бесперебойной работы этих систем, а также предотвращения аварий, выявления бесхозяйных сетей и объектов водоснабжения, водоотведения (канализации)",
+      "url": "https://t.me/government_by/5118",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5447343069177355146\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9384.png')\"><b>📄</b></i></tg-emoji> <b>В Беларуси утверждены положения о порядке разработки схем и инвентаризации систем питьевого водоснабжения и водоотведения </b><br/><br/><i>Соответствующее постановление подписал Премьер-министр</i><br/><br/><u>Документом утверждены:</u><br/><br/><tg-emoji emoji-id=\"5458521696522766073\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9498.png')\"><b>🔘</b></i></tg-emoji>Положение о порядке разработки и утверждения схем питьевого водоснабжения, водоотведения (канализации)<br/><blockquote>Схемы питьевого водоснабжения и водоотведения (канализации) являются основными документами при градостроительном планировании и служат инженерно-технической основой для разработки и актуализации генеральных планов населенных пунктов, с учетом которых определяются резервы и лимиты мощностей действующих систем, прогнозные нагрузки (потребность) для новых микрорайонов и определения технической возможности строительства сетей</blockquote><br/><br/><tg-emoji emoji-id=\"5458521696522766073\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9498.png')\"><b>🔘</b></i></tg-emoji>Положение о порядке проведения инвентаризации систем питьевого водоснабжения, водоотведения (канализации)<br/><blockquote>Инвентаризация систем питьевого водоснабжения, водоотведения (канализации) необходима для получения полной, актуальной и достоверной информации о состоянии систем питьевого водоснабжения и водоотведения (канализации) в регионах в целях обеспечения эффективного управления и бесперебойной работы этих систем, а также предотвращения аварий, выявления бесхозяйных сетей и объектов водоснабжения, водоотведения (канализации)</blockquote></div>"
+    },
+    {
+      "source": "Белорусы и рынок (Telegram)",
+      "date": "2026-07-31T17:14:32",
+      "date_str": "2026-07-31T17:14:32+00:00",
+      "text": "https://www.youtube.com/watch?v=IZepsW0cLOI",
+      "url": "https://t.me/belrynok/11009",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><a href=\"https://www.youtube.com/watch?v=IZepsW0cLOI\" rel=\"noopener\" target=\"_blank\">https://www.youtube.com/watch?v=IZepsW0cLOI</a></div>"
+    },
+    {
+      "source": "Экономическая газета | Новости экономики Беларуси (Telegram)",
+      "date": "2026-07-31T17:03:18",
+      "date_str": "2026-07-31T17:03:18+00:00",
+      "text": "О чем мы писали сегодня, 31июля🔴В последнюю декаду июля 2026 г. приняты важные новшества в сфере использования объектов интеллектуальной собственности. Торговле и производителям промпродукции надо обратить внимание на изменения в представляемой ими статотчетности. В банковском секторе продолжают усиливать требования к информационной безопасности, а в трудовой сфере – актуализировать нормативную базу, определяющую квалификационные характеристики служащих в разных отраслях. Также в эти дни стало известно, когда стартует осенний призыв на военную службу. Об этих и иных изменениях – в еженедельном обзоре.👉🏻К материалу🔴Правительство Беларуси расширило перечень автотранспорта, облагаемого утильсбором, но ввело для нового объекта нулевые ставки. Параллельно Минтранс ужесточил условия применения льготных ставок утильсбора при ввозе современной грузовой автотехники для международных перевозок.👉🏻К материалу🔴С 1 сентября 2026 г. перестанет действовать упрощенный порядок регистрации средств персональной мобильности. Представители Госавтоинспекции и Госстандартарассказали, сколько бывших СПМ уже прошли регистрацию и что ждет владельцев такого транспорта после 1 сентября.👉🏻К материалу🔴В январе–июне 2026 г. Беларусь импортировала из России риса на 5,6 млн USD и возглавила топ-3 стран-импортеров такой продукции. ДаннымиподелилсяФедеральный центр развития экспорта продукции АПК Минсельхоза РФ.👉🏻К материалу🔴С 1 августа 2026 года в Беларуси официально станет доступен новый банк данных — Единый реестр цифровых показателей (ЕРЦП). Рассказываем, что это за ресурс и какие данные, полезные для бизнеса, в нем представлены.👉🏻К материалу",
+      "url": "https://t.me/EGazeta/14724",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>О чем мы писали сегодня, 31</b> <b>июля</b><br/><br/><tg-emoji emoji-id=\"5206660119886064524\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B4.png')\"><b>🔴</b></i></tg-emoji>В последнюю декаду июля 2026 г. приняты важные новшества в сфере использования объектов интеллектуальной собственности. Торговле и производителям промпродукции надо обратить внимание на изменения в представляемой ими статотчетности. В банковском секторе продолжают усиливать требования к информационной безопасности, а в трудовой сфере – актуализировать нормативную базу, определяющую квалификационные характеристики служащих в разных отраслях. Также в эти дни стало известно, когда стартует осенний призыв на военную службу. Об этих и иных изменениях – в еженедельном обзоре.<br/><a href=\"https://neg.by/novosti/otkrytj/kak-primenyat-obnovlennoe-postanovlenie-713-o-regulirovanii-tsen-razyasnenie-mart/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189F09F8FBB.png')\"><b>👉🏻</b></i></a><a href=\"https://neg.by/novosti/otkrytj/chto-izmenilos-v-belarusi-s-23-po-29-iyulya-2026-goda-novosti-zakonodatelstva/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">К материалу</a><br/><br/><tg-emoji emoji-id=\"5206660119886064524\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B4.png')\"><b>🔴</b></i></tg-emoji>Правительство Беларуси расширило перечень автотранспорта, облагаемого утильсбором, но ввело для нового объекта нулевые ставки. Параллельно Минтранс ужесточил условия применения льготных ставок утильсбора при ввозе современной грузовой автотехники для международных перевозок.<br/><a href=\"https://neg.by/novosti/otkrytj/kak-primenyat-obnovlennoe-postanovlenie-713-o-regulirovanii-tsen-razyasnenie-mart/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189F09F8FBB.png')\"><b>👉🏻</b></i></a><a href=\"https://neg.by/novosti/otkrytj/utilizatsionnyy-sbor-vvedeny-nulevye-stavki-i-dopolnitelnoe-uslovie-primeneniya-lgot/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">К материалу</a><br/><br/><tg-emoji emoji-id=\"5206660119886064524\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B4.png')\"><b>🔴</b></i></tg-emoji>С 1 сентября 2026 г. перестанет действовать упрощенный порядок регистрации средств персональной мобильности. Представители Госавтоинспекции и Госстандарта <a href=\"https://www.bpc.by/ru/klendar/eventdetail/932/-/vnimanie-novaya-press-konferentsiya-o-realizatsii-polozhenij-ukaza-295-po-otsenke-sootvetstviya-i-registratsii-sredstv-personalnoj-mobilnosti.html\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">рассказали</a>, сколько бывших СПМ уже прошли регистрацию и что ждет владельцев такого транспорта после 1 сентября.<br/><a href=\"https://neg.by/novosti/otkrytj/kak-primenyat-obnovlennoe-postanovlenie-713-o-regulirovanii-tsen-razyasnenie-mart/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189F09F8FBB.png')\"><b>👉🏻</b></i></a><a href=\"https://neg.by/novosti/otkrytj/uproshchennyy-poryadok-registratsii-spm-zakanchivaetsya-1-sentyabrya-chto-dalshe/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">К материалу</a><br/><br/><tg-emoji emoji-id=\"5206660119886064524\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B4.png')\"><b>🔴</b></i></tg-emoji>В январе–июне 2026 г. Беларусь импортировала из России риса на 5,6 млн USD и возглавила топ-3 стран-импортеров такой продукции. Данными <a href=\"https://t.me/mcxae/10275\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">поделился</a> Федеральный центр развития экспорта продукции АПК Минсельхоза РФ.<br/><a href=\"https://neg.by/novosti/otkrytj/kak-primenyat-obnovlennoe-postanovlenie-713-o-regulirovanii-tsen-razyasnenie-mart/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189F09F8FBB.png')\"><b>👉🏻</b></i></a><a href=\"https://neg.by/novosti/otkrytj/belarus-vozglavila-troyku-krupneyshikh-importerov-rossiyskogo-risa/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">К материалу</a><br/><br/><tg-emoji emoji-id=\"5206660119886064524\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B4.png')\"><b>🔴</b></i></tg-emoji>С 1 августа 2026 года в Беларуси официально станет доступен новый банк данных — Единый реестр цифровых показателей (ЕРЦП). Рассказываем, что это за ресурс и какие данные, полезные для бизнеса, в нем представлены.<br/><a href=\"https://neg.by/novosti/otkrytj/v-belarusi-nachnet-rabotat-edinyy-reestr-tsifrovykh-pokazateley-chto-v-nem-mozhno-nayti/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189F09F8FBB.png')\"><b>👉🏻</b></i>К материалу</a></div>"
+    },
+    {
+      "source": "ГКНТ (Telegram)",
+      "date": "2026-07-31T14:53:01",
+      "date_str": "2026-07-31T14:53:01+00:00",
+      "text": "#НЦИС_факты📸@ncip_belarus",
+      "url": "https://t.me/scst_by/7877",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><a href=\"?q=%23%D0%9D%D0%A6%D0%98%D0%A1_%D1%84%D0%B0%D0%BA%D1%82%D1%8B\">#НЦИС_факты</a><br/><br/><i><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93B8.png')\"><b>📸</b></i></i><a href=\"https://t.me/ncip_belarus\" target=\"_blank\"><i>@ncip_belarus</i></a></div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-07-31T14:40:01",
+      "date_str": "2026-07-31T14:40:01+00:00",
+      "text": "🏅Почему Президент решил поменять формат церемонии вручения государственных наград?",
+      "url": "https://t.me/pul_1/22186",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F8F85.png')\"><b>🏅</b></i>Почему Президент решил поменять формат церемонии вручения государственных наград?</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-07-31T15:10:46",
+      "date_str": "2026-07-31T15:10:46+00:00",
+      "text": "📖Исторический срез развития молочной отрасли.Количество переходит в качество. И мы на этом останавливаться не должны.",
+      "url": "https://t.me/pul_1/22187",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9396.png')\"><b>📖</b></i> Исторический срез развития молочной отрасли. <br/><br/><blockquote>Количество переходит в качество. И мы на этом останавливаться не должны.</blockquote></div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-07-31T15:31:03",
+      "date_str": "2026-07-31T15:31:03+00:00",
+      "text": "🤝Важные слова Президента людям, чей труд - основа успеха.",
+      "url": "https://t.me/pul_1/22188",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA49D.png')\"><b>🤝</b></i><b> Важные слова Президента людям, чей труд - основа успеха.</b></div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-07-31T15:45:22",
+      "date_str": "2026-07-31T15:45:22+00:00",
+      "text": "💬«Надо, чтобы люди всегда свое получали».🤔Но какое условие для этого должно быть выполнено?",
+      "url": "https://t.me/pul_1/22189",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92AC.png')\"><b>💬</b></i> «Надо, чтобы люди всегда свое получали».</i></b><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA494.png')\"><b>🤔</b></i> Но какое условие для этого должно быть выполнено?</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-07-31T16:20:01",
+      "date_str": "2026-07-31T16:20:01+00:00",
+      "text": "🦬Во Дворце Независимости есть зубр от Пархомчика.🐄Теперь будет и корова от «Савушкина продукта».",
+      "url": "https://t.me/pul_1/22190",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA6AC.png')\"><b>🦬</b></i> Во Дворце Независимости есть зубр от Пархомчика. <br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9084.png')\"><b>🐄</b></i> Теперь будет и корова от «Савушкина продукта».</div>"
     }
   ],
   "keywords": [
@@ -17907,5 +17987,5 @@
     "финансовая отчётность",
     "устойчивое развитие"
   ],
-  "last_updated": "2026-07-31T14:28:59.832322"
+  "last_updated": "2026-07-31T17:48:37.963344"
 }
