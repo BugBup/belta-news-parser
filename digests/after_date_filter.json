@@ -1,12 +1,12 @@
 {
   "statistics": {
     "stage": "after_date_filter",
-    "total_before": 205,
-    "total_after": 163,
+    "total_before": 206,
+    "total_after": 164,
     "belta_with_keywords": 0,
-    "telegram_all": 113,
+    "telegram_all": 114,
     "date_cutoff": 2,
-    "timestamp": "2026-08-07T15:03:35.406418"
+    "timestamp": "2026-08-07T17:02:20.379706"
   },
   "items": [
     {
@@ -20129,6 +20129,22 @@
       "text": "💬«Поэтому молодая и красивая, а говоришь, на пенсии».Как Президент и жители Вилейки открыли секрет хорошей жизни.",
       "url": "https://t.me/pul_1/22260",
       "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92AC.png')\"><b>💬</b></i> <b><i>«Поэтому молодая и красивая, а говоришь, на пенсии». </i></b><br/><br/>Как Президент и жители Вилейки открыли секрет хорошей жизни.</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-07T15:10:29",
+      "date_str": "2026-08-07T15:10:29+00:00",
+      "text": "Диктатура🆚ДемократияЛюди ответили, что лучше.P.S.сфотографироваться с Президентом - легко. Такая вот белорусская «диктатура».",
+      "url": "https://t.me/pul_1/22261",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Диктатура <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F869A.png')\"><b>🆚</b></i> Демократия </b><br/><i>Люди ответили, что лучше. </i><br/><br/><b>P.S.</b> сфотографироваться с Президентом - легко. Такая вот белорусская «диктатура».</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-07T15:35:01",
+      "date_str": "2026-08-07T15:35:01+00:00",
+      "text": "📸Держим пари, такое фото есть далеко не в каждом семейном архиве.Чем семья Филистовичей удивила Первого?",
+      "url": "https://t.me/pul_1/22262",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93B8.png')\"><b>📸</b></i> Держим пари, такое фото есть далеко не в каждом семейном архиве. </b><br/><br/>Чем семья Филистовичей удивила Первого?</div>"
     }
   ],
   "keywords": [
@@ -20138,5 +20154,5 @@
     "финансовая отчётность",
     "устойчивое развитие"
   ],
-  "last_updated": "2026-08-07T15:03:35.442429"
+  "last_updated": "2026-08-07T17:02:20.417877"
 }
