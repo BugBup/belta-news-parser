@@ -1,12 +1,12 @@
 {
   "statistics": {
     "stage": "after_date_filter",
-    "total_before": 195,
-    "total_after": 152,
+    "total_before": 196,
+    "total_after": 127,
     "belta_with_keywords": 0,
-    "telegram_all": 102,
+    "telegram_all": 77,
     "date_cutoff": 2,
-    "timestamp": "2026-08-06T14:30:26.649617"
+    "timestamp": "2026-08-07T00:11:06.294370"
   },
   "items": [
     {
@@ -19553,6 +19553,54 @@
       "text": "📣ПолковникВладимир Голубевназначен заместителем командующего внутренними войсками Министерства внутренних дел по тылу - начальником тыла.✍🏻Соответствующий Указ подписал Президент Беларуси.",
       "url": "https://t.me/pul_1/22235",
       "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93A3.png')\"><b>📣</b></i> Полковник <b>Владимир Голубев</b> назначен заместителем командующего внутренними войсками Министерства внутренних дел по тылу - начальником тыла. <br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29C8DF09F8FBB.png')\"><b>✍🏻</b></i> Соответствующий Указ подписал Президент Беларуси.</div>"
+    },
+    {
+      "source": "Экономика Беларуси (Telegram)",
+      "date": "2026-08-06T14:32:41",
+      "date_str": "2026-08-06T14:32:41+00:00",
+      "text": "Президентпровелпереговоры с министром иностранных дел АлжираЗаседание Евразийского межправсовета в узком составепрошлов Чолпон-АтеПервым в Беларусизавершилуборку зерновых и зернобобовых культур Столинский районБеларусь входит в топ-5 экспортеров молочной продукцииКомпетентноемнениео резервах белорусского АПК и перспективах экспортаЭнергетическая безопасность, высокие технологии и новые рабочие местаАктуальнаядискуссияо развитии ядерной энергетики и ее вкладе в экономику страныМашиностроение, медицина и логистикаВ «Великом камне»рассказалио привлечении новых резидентовКомпании и физлица в Беларуси в июлепродалина $337,5 млн валюты больше, чем купилиВ BELAVIAназвалитоп-5 самых загруженных маршрутов«Белтаможсервис» и порт Бронкарасширяютсотрудничество для наращивания белорусского экспорта",
+      "url": "https://t.me/econ_gov_by/8776",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Президент </b><a href=\"https://belta.by/president/view/lukashenko-objjasnil-filosofiju-otnoshenij-s-alzhirom-i-predlozhil-uskorit-realizatsiju-dogovorennostej-794803-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>провел</b></a><b> переговоры с министром иностранных дел Алжира</b><br/><b> </b><br/><b>Заседание Евразийского межправсовета в узком составе </b><a href=\"https://belta.by/politics/view/zasedanie-evrazijskogo-mezhpravsoveta-v-uzkom-sostave-prohodit-v-cholpon-ate-794858-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>прошло</b></a><b> в Чолпон-Ате</b><br/> <br/><b>Первым в Беларуси </b><a href=\"https://belta.by/regions/view/pervym-v-belarusi-zavershil-uborku-zernovyh-i-zernobobovyh-kultur-stolinskij-rajon-794767-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>завершил</b></a><b> уборку зерновых и зернобобовых культур Столинский район</b><br/><b> </b><br/><b>Беларусь входит в топ-5 экспортеров молочной продукции</b><br/>Компетентное <a href=\"https://news.by/videogallery/intervyu/aktualnoe-intervyu/aktualnoe-intervyu-svetlana-kondratenko\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">мнение</a> о резервах белорусского АПК и перспективах экспорта<br/><b>  </b><br/><b>Энергетическая безопасность, высокие технологии и новые рабочие места</b><br/>Актуальная <a href=\"https://news.by/videogallery/tok-shou/ekonomicheskaya-sreda/ekonomicheskaya-sreda-atomnaya-energetika-belarusi-ekonomika-rabochie-mesta-i-bezopasnost\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">дискуссия</a> о развитии ядерной энергетики и ее вкладе в экономику страны<br/> <br/><b>Машиностроение, медицина и логистика</b><br/>В «Великом камне» <a href=\"https://www.sb.by/articles/prirastaem-tekhnologiyami.html\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">рассказали</a> о привлечении новых резидентов<br/> <br/><b>Компании и физлица в Беларуси в июле </b><a href=\"https://belta.by/economics/view/kompanii-i-fizlitsa-v-belarusi-v-ijule-prodali-na-3375-mln-valjuty-bolshe-chem-kupili-794821-2026/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>продали</b></a><b> на $337,5 млн валюты больше, чем купили</b><br/> <br/><b>В BELAVIA </b><a href=\"https://officelife.by/news/v-nbsp-belavia-nazvali-top-5-samykh-zagruzhennykh-marshrutov/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>назвали</b></a><b> топ-5 самых загруженных маршрутов</b><br/> <br/><b>«Белтаможсервис» и порт Бронка </b><a href=\"https://www.sb.by/articles/beltamozhservis-i-port-bronka-rasshiryayut-sotrudnichestvo-dlya-narashchivaniya-belorusskogo-eksport.html\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>расширяют</b></a><b> сотрудничество для наращивания белорусского экспорта</b></div>"
+    },
+    {
+      "source": "Правительство Беларуси (Telegram)",
+      "date": "2026-08-06T14:53:08",
+      "date_str": "2026-08-06T14:53:08+00:00",
+      "text": "📣Член Коллегии (Министр) по конкуренции и антимонопольному регулированию ЕЭК Максим Ермолович:ЕАЭС - это глобальный игрок на мировом рынке",
+      "url": "https://t.me/government_by/5137",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5458885415828233453\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93A3.png')\"><b>📣</b></i></tg-emoji> <b>Член Коллегии (Министр) по конкуренции и антимонопольному регулированию ЕЭК Максим Ермолович:</b> <i>ЕАЭС - это глобальный игрок на мировом рынке</i></div>"
+    },
+    {
+      "source": "Правительство Беларуси (Telegram)",
+      "date": "2026-08-06T15:03:01",
+      "date_str": "2026-08-06T15:03:01+00:00",
+      "text": "🔉Максим Ермолович:Цели Союза выполняются и это все приводит к положительной динамике наших торговых отношений«Подчеркну, сейчас стоит амбициозная задача - наращивать объемы торговли всего Союза с внешним миром. В том числе и искать новые механизмы, как обеспечить защиту интересов наших производителей на внешнем контуре», - отметил член Коллегии (Министр) по конкуренции и антимонопольному регулированию ЕЭК.",
+      "url": "https://t.me/government_by/5138",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5449424290069909965\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9489.png')\"><b>🔉</b></i></tg-emoji> <b>Максим Ермолович:</b> <i>Цели Союза выполняются и это все приводит к положительной динамике наших торговых отношений</i><br/><br/><blockquote>«Подчеркну, сейчас стоит амбициозная задача - наращивать объемы торговли всего Союза с внешним миром. В том числе и искать новые механизмы, как обеспечить защиту интересов наших производителей на внешнем контуре», - отметил член Коллегии (Министр) по конкуренции и антимонопольному регулированию ЕЭК.</blockquote></div>"
+    },
+    {
+      "source": "Банки 24 (Telegram)",
+      "date": "2026-08-06T14:56:07",
+      "date_str": "2026-08-06T14:56:07+00:00",
+      "text": "Банк в Беларуси меняет лимит переводов по номеру телефонаСбер Банксообщает, что с 7 августа будет изменен лимит на количество переводов в ПАО Сбербанк (Россия) по номеру телефона с 14 шт. до 7 шт. в день.",
+      "url": "https://t.me/banki24_news/13778",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Банк в Беларуси меняет лимит переводов по номеру телефона</b><br/><br/>Сбер Банк <a href=\"https://www.sber-bank.by/new/izmenenie-limita-pao-060826\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">сообщает</a>, что с 7 августа будет изменен лимит на количество переводов в ПАО Сбербанк (Россия) по номеру телефона с 14 шт. до 7 шт. в день.</div>"
+    },
+    {
+      "source": "Банки 24 (Telegram)",
+      "date": "2026-08-06T19:14:09",
+      "date_str": "2026-08-06T19:14:09+00:00",
+      "text": "☀️Сегодня в Беларуси снова было +40Второй раз за лето 2026 года и второй раз за всю историю наблюдений в РБ уровень 2 метров в тени над землей раскалился до +40.В конце июня это быламетеостанция Пинска с историческим рекордом +40,4, а сегодня метеостанция в Мозыре с максимумом +40,3.",
+      "url": "https://t.me/banki24_news/13779",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29880.png')\"><b>☀️</b></i> <b>Сегодня в Беларуси снова было +40</b><br/><br/>Второй раз за лето 2026 года и второй раз за всю историю наблюдений в РБ уровень 2 метров в тени над землей раскалился до +40.<br/><br/>В конце июня это была <a href=\"https://t.me/banki24_news/13500\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">метеостанция Пинска с историческим рекордом +40,4</a>, а сегодня метеостанция в Мозыре с максимумом +40,3.</div>"
+    },
+    {
+      "source": "Белорусы и рынок (Telegram)",
+      "date": "2026-08-06T14:38:57",
+      "date_str": "2026-08-06T14:38:57+00:00",
+      "text": "В Минске выставлена на продажу легендарная «Бессоница»Проект, к которому приложил руку известный минский ресторатор Алексей Садовой, функционировал на улице Герцена, 1А с 2012 года.Заведение отличало то, что он было открыто ежедневно с 19.00 до 5 утра.Как говорится в объявлении, круглогодичная терраса бара составляет 95 квадратов, а внешняя летняя терраса — 97,8 квадрата.За заведение просят 745 544 рубля или по текущему курсу 255 тыс. долларов.",
+      "url": "https://t.me/belrynok/11032",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><a href=\"https://belmarket.eu/news/16481477-987c-4803-8319-d4e7a0128a5c\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>В Минске выставлена на продажу легендарная «Бессоница»</b></a><br/><br/>Проект, к которому приложил руку известный минский ресторатор Алексей Садовой, функционировал на улице Герцена, 1А с 2012 года. <br/><br/>Заведение отличало то, что он было открыто ежедневно с 19.00 до 5 утра.<br/><br/>Как говорится в объявлении, круглогодичная терраса бара составляет 95 квадратов, а внешняя летняя терраса — 97,8 квадрата.<br/><br/><b>За заведение просят 745 544 рубля или по текущему курсу 255 тыс. долларов.</b></div>"
     }
   ],
   "keywords": [
@@ -19562,5 +19610,5 @@
     "финансовая отчётность",
     "устойчивое развитие"
   ],
-  "last_updated": "2026-08-06T14:30:26.683838"
+  "last_updated": "2026-08-07T00:11:06.331192"
 }
