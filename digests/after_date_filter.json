@@ -1,12 +1,12 @@
 {
   "statistics": {
     "stage": "after_date_filter",
-    "total_before": 204,
-    "total_after": 123,
+    "total_before": 200,
+    "total_after": 130,
     "belta_with_keywords": 0,
-    "telegram_all": 73,
+    "telegram_all": 80,
     "date_cutoff": 2,
-    "timestamp": "2026-08-11T09:10:23.509479"
+    "timestamp": "2026-08-11T10:59:53.246133"
   },
   "items": [
     {
@@ -20801,6 +20801,94 @@
       "text": "🌾Тем сегодня много, но главная одна –уборочная кампания.💬Первый вопрос министру сельского хозяйства – сколько процентов на сегодня убрано?Президент обратил внимание и на уборку рапса и кукурузы.Лучше для сельхозкультур года у нас не было. На моей памяти не было. У нас есть все. Ночью прошел дождик, до обеда просохнут посевы, после обеда можно убирать. Год идеальный.",
       "url": "https://t.me/pul_1/22289",
       "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F8CBE.png')\"><b>🌾</b></i></b> <b>Тем сегодня много, но главная одна –</b> <b>уборочная кампания. </b><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92AC.png')\"><b>💬</b></i> Первый вопрос министру сельского хозяйства – сколько процентов на сегодня убрано?<br/><i><br/>Президент обратил внимание и на уборку рапса и кукурузы. </i><br/><b><br/></b><blockquote><b>Лучше для сельхозкультур года у нас не было. На моей памяти не было. У нас есть все. Ночью прошел дождик, до обеда просохнут посевы, после обеда можно убирать. Год идеальный.</b></blockquote></div>"
+    },
+    {
+      "source": "Правительство Беларуси (Telegram)",
+      "date": "2026-08-11T10:57:02",
+      "date_str": "2026-08-11T10:57:02+00:00",
+      "text": "📣В эти минуты - в кабинете Президента с докладом Премьер-министр.Подробности - скоро.",
+      "url": "https://t.me/government_by/5162",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5458885415828233453\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93A3.png')\"><b>📣</b></i></tg-emoji>В эти минуты - в кабинете Президента с докладом Премьер-министр. <br/><br/><i>Подробности - скоро.</i></div>"
+    },
+    {
+      "source": "Банки 24 (Telegram)",
+      "date": "2026-08-11T10:01:19",
+      "date_str": "2026-08-11T10:01:19+00:00",
+      "text": "🔤🔤🔤🔤🔤🔤🔤Доллар и евро откатились, российский рубль вырос до максимума за четыре дняИтоги валютных торгов на БВФБ во вторник 11 августа:USD🇺🇸2,9480   −0,0154 | −0,52%EUR🇪🇺3,4059   −0,0046 | −0,13%RUB🇷🇺3,6154   +0,0094 | +0,26%CNY🇨🇳4,3948   −0,0242 | −0,55%👉Бронь выгодного курса на 2 часав нашем сервисе💵👉лучшиекурсы валют в банках РБ👉онлайн-торги на БВФБ",
+      "url": "https://t.me/banki24_news/13803",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><tg-emoji emoji-id=\"5289917442443731695\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5289784027874615050\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5289523005532168180\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5287629517660117734\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5289521936085311302\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5289742001619623175\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><tg-emoji emoji-id=\"5289618912151887061\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94A4.png')\"><b>🔤</b></i></tg-emoji><br/><br/><b>Доллар и евро откатились, российский рубль вырос до максимума за четыре дня</b> <br/> <br/>Итоги валютных торгов на БВФБ во вторник 11 августа: <br/> <br/>USD <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87BAF09F87B8.png')\"><b>🇺🇸</b></i>  2,9480   −0,0154 | −0,52% <br/>EUR <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87AAF09F87BA.png')\"><b>🇪🇺</b></i>  3,4059   −0,0046 | −0,13% <br/>RUB <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87B7F09F87BA.png')\"><b>🇷🇺</b></i>  3,6154   +0,0094 | +0,26% <br/>CNY <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87A8F09F87B3.png')\"><b>🇨🇳</b></i>  4,3948   −0,0242 | −0,55% <br/> <br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189.png')\"><b>👉</b></i> <a href=\"https://banki24.by/kurs/zabronirovat-kurs-valut?utm_source=tg\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>Бронь выгодного курса на 2 часа</b></a> в нашем сервисе <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92B5.png')\"><b>💵</b></i> <br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189.png')\"><b>👉</b></i> лучшие <a href=\"https://banki24.by/kurs?utm_source=tg\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">курсы валют в банках РБ</a> <br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189.png')\"><b>👉</b></i> <a href=\"https://banki24.by/exchange/currencymarket?utm_source=tg\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\">онлайн-торги на БВФБ</a></div>"
+    },
+    {
+      "source": "Белорусы и рынок (Telegram)",
+      "date": "2026-08-11T09:11:00",
+      "date_str": "2026-08-11T09:11:00+00:00",
+      "text": "Где в Беларуси больше всего трудоголиков?Топ-регионов  и отраслей Беларуси, в которым работники проводят на работе больше времени.Работники в Минске проводят в трудах меньше времени, чем в областях.Если по Минску количество рабочих часов за 6 месяцев составило 937, то в областях — от 941 в Гомельской до 955 в Могилевской.Среди отраслей рейтинг трудоголиков по итогам первой половины 2026 года возглавили такие:▪️аграрный сектор и охота — 1059 часов;▪️здравоохранение — 1023;▪️перевозки автобусами в регулярном сообщении — 1022",
+      "url": "https://t.me/belrynok/11048",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Где в Беларуси больше всего трудоголиков?<br/><br/></b><a href=\"https://belmarket.eu/news/dbecbf63-79f6-4baa-899e-705ee6674866\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>Топ-регионов  и отраслей Беларуси, в которым работники проводят на работе больше времени.</b></a><br/><br/>Работники в Минске проводят в трудах меньше времени, чем в областях.<br/><br/>Если по Минску количество рабочих часов за 6 месяцев составило 937, то в областях — от 941 в Гомельской до 955 в Могилевской.<br/><br/><b>Среди отраслей рейтинг трудоголиков по итогам первой половины 2026 года возглавили такие:</b><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E296AA.png')\"><b>▪️</b></i> аграрный сектор и охота — 1059 часов;<br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E296AA.png')\"><b>▪️</b></i> здравоохранение — 1023;<br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E296AA.png')\"><b>▪️</b></i> перевозки автобусами в регулярном сообщении — 1022</div>"
+    },
+    {
+      "source": "Белорусы и рынок (Telegram)",
+      "date": "2026-08-11T10:55:00",
+      "date_str": "2026-08-11T10:55:00+00:00",
+      "text": "Инфляция в Беларуси вновь пошла вверхВ марте и апреле текущего года годовая инфляция составляла по 5,4%. Потом она начала снижаться: в мае – 4,8% и в июне – 4,3%.Но в июле цены вновь выросли - на 4,4%.В июле в сравнении с аналогичным периодом прошлого года цены на продовольственные товары прибавили 3,1%.Непродовольственные товары в июле подорожали в сравнении на 2,9%.А больше всего выросли цены на услуги. В сравнении с июлем 2025 года они подорожали на 8,7%.Базовый индекс потребительских цен, исключающий влияние административных и сезонных факторов, в июле по сравнению с июнем составил 100,3%, а с декабрем 2025-го — 103,2%.",
+      "url": "https://t.me/belrynok/11050",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><a href=\"https://belmarket.eu/news/e339364c-509d-44d0-97b5-a23f194f7bef\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><b>Инфляция в Беларуси вновь пошла вверх</b></a><br/><br/>В марте и апреле текущего года годовая инфляция составляла по 5,4%. Потом она начала снижаться: в мае – 4,8% и в июне – 4,3%. <br/><br/><b>Но в июле цены вновь выросли - на 4,4%.</b><br/><br/>В июле в сравнении с аналогичным периодом прошлого года цены на продовольственные товары прибавили 3,1%.<br/><br/>Непродовольственные товары в июле подорожали в сравнении на 2,9%.<br/><br/><b>А больше всего выросли цены на услуги. В сравнении с июлем 2025 года они подорожали на 8,7%.</b><br/><br/>Базовый индекс потребительских цен, исключающий влияние административных и сезонных факторов, в июле по сравнению с июнем составил 100,3%, а с декабрем 2025-го — 103,2%.</div>"
+    },
+    {
+      "source": "Экономическая газета | Новости экономики Беларуси (Telegram)",
+      "date": "2026-08-11T09:46:02",
+      "date_str": "2026-08-11T09:46:02+00:00",
+      "text": "Обзор изменений в законодательстве Беларуси с 30 июля по 5 августа.МедиацияУтверждено новое Положение о порядке согласования наименований организаций, обеспечивающих проведение медиации.Также уточнен порядок представления в Минюст документов:🔹для государственной регистрации организации, обес­печивающей проведение медиации, создаваемой в форме учреждения;🔹для учета обособленного подразделения юридического лица, обеспечивающего проведение медиации.Скорректирован ряд иных актов, регулирующих медиацию и адвокатуру, в т.ч. Правила этики медиатора и Правила профессиональной этики адвоката.Одновременно внесенымногочисленные изменения в Инструкцию по делопроизводствув государственных органах, иных организациях. В частности, в новой редакции изложена гл. 19, определяющая особенности работы с документами в электронном виде.Вступило в силусо 2 августа 2026 г.👉Весь обзор",
+      "url": "https://t.me/EGazeta/14788",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Обзор изменений в законодательстве Беларуси с 30 июля по 5 августа.<br/></b><br/><b>Медиация</b><br/><b>Утверждено новое Положение о порядке согласования наименований организаций, обеспечивающих проведение медиации.</b><br/>Также уточнен порядок представления в Минюст документов:<br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B9.png')\"><b>🔹</b></i>для государственной регистрации организации, обес­печивающей проведение медиации, создаваемой в форме учреждения;<br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94B9.png')\"><b>🔹</b></i>для учета обособленного подразделения юридического лица, обеспечивающего проведение медиации.<br/><br/>Скорректирован ряд иных актов, регулирующих медиацию и адвокатуру, в т.ч. Правила этики медиатора и Правила профессиональной этики адвоката.<br/><br/>Одновременно внесены <b>многочисленные изменения в Инструкцию по делопроизводству</b> в государственных органах, иных организациях. В частности, в новой редакции изложена гл. 19, определяющая особенности работы с документами в электронном виде.<br/><br/>Вступило в силу <b>со 2 августа 2026 г.<br/></b><br/><a href=\"https://neg.by/novosti/otkrytj/rasshirenie-trebovaniy-k-rezidentam-sez-novshestva-dlya-uchastnikov-ved-i-mediatorov/\" onclick=\"return confirm('Open this link?\\n\\n'+this.href);\" rel=\"noopener\" target=\"_blank\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9189.png')\"><b>👉</b></i>Весь обзор</a></div>"
+    },
+    {
+      "source": "Экономическая газета | Новости экономики Беларуси (Telegram)",
+      "date": "2026-08-11T10:15:31",
+      "date_str": "2026-08-11T10:15:31+00:00",
+      "text": "Итоги валютных торгов на БВФБ 11.08.2026USD🇺🇸: 2.948  | -0.0154  | -0.52%EUR🇪🇺: 3.4059| -0.0046  | -0.13%RUB🇷🇺: 3.6154| +0.0094 | +0.26%CNY🇨🇳: 4.3948| -0.0242  | -0.55%Курсы Нацбанка на 12.08.2026USD🇺🇸: 2.948, RUB🇷🇺:: 3.6154, CNY🇨🇳: 4.3948",
+      "url": "https://t.me/EGazeta/14789",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b>Итоги валютных торгов на БВФБ 11.08.2026</b><br/><br/>USD<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87BAF09F87B8.png')\"><b>🇺🇸</b></i>: 2.948  | -0.0154  | -0.52%<br/>EUR<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87AAF09F87BA.png')\"><b>🇪🇺</b></i>: 3.4059| -0.0046  | -0.13%<br/>RUB<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87B7F09F87BA.png')\"><b>🇷🇺</b></i>: 3.6154| +0.0094 | +0.26%<br/>CNY<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87A8F09F87B3.png')\"><b>🇨🇳</b></i>: 4.3948| -0.0242  | -0.55%<br/> <br/><b>Курсы Нацбанка на 12.08.2026</b><br/><br/>USD<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87BAF09F87B8.png')\"><b>🇺🇸</b></i>: 2.948, RUB<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87B7F09F87BA.png')\"><b>🇷🇺</b></i>:: 3.6154, CNY<i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F87A8F09F87B3.png')\"><b>🇨🇳</b></i>: 4.3948</div>"
+    },
+    {
+      "source": "ГКНТ (Telegram)",
+      "date": "2026-08-11T10:20:29",
+      "date_str": "2026-08-11T10:20:29+00:00",
+      "text": "🔺От измельчителей зерна до беспилотников, умных  комбайнов и тракторов🌾Уборочная нового поколения: это надо видеть!",
+      "url": "https://t.me/scst_by/7912",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F94BA.png')\"><b>🔺</b></i>От измельчителей зерна до беспилотников, умных  комбайнов и тракторов</b><br/><b><i><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F8CBE.png')\"><b>🌾</b></i> Уборочная нового поколения: это надо видеть!</i></b></div></div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-11T09:25:00",
+      "date_str": "2026-08-11T09:25:00+00:00",
+      "text": "Все вопросы чувствительны для бюджета, но самое главное - для людей.📣Первый задал тон совещания.",
+      "url": "https://t.me/pul_1/22290",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><blockquote><b>Все вопросы чувствительны для бюджета, но самое главное - для людей. </b></blockquote><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F93A3.png')\"><b>📣</b></i> Первый задал тон совещания.</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-11T09:55:23",
+      "date_str": "2026-08-11T09:55:23+00:00",
+      "text": "💬«Товар омертвлен. Ни на внутренний рынок не забрали, ни на внешний продать не могут».📑Правительство предлагает поменять схему закупку удобрений.🤔Но у Президента есть вопросы.",
+      "url": "https://t.me/pul_1/22291",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><b><i><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F92AC.png')\"><b>💬</b></i> «Товар омертвлен. Ни на внутренний рынок не забрали, ни на внешний продать не могут». </i><br/></b><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9391.png')\"><b>📑</b></i> Правительство предлагает поменять схему закупку удобрений. <br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09FA494.png')\"><b>🤔</b></i> Но у Президента есть вопросы.</div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-11T10:25:14",
+      "date_str": "2026-08-11T10:25:14+00:00",
+      "text": "✍🏻Молодежи на заметку.📌Лукашенко предложил модный тренд, который должен стать базой.Двое родителей - двое ребятишек.😉Тем более материальная поддержка🔝",
+      "url": "https://t.me/pul_1/22292",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29C8DF09F8FBB.png')\"><b>✍🏻</b></i> <i>Молодежи на заметку.</i><br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F938C.png')\"><b>📌</b></i><b> Лукашенко предложил модный тренд, который должен стать базой.</b><br/><br/><tg-spoiler>Двое родителей - двое ребятишек. <br/></tg-spoiler><br/><i><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9889.png')\"><b>😉</b></i> Тем более материальная поддержка</i> <i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F949D.png')\"><b>🔝</b></i></div>"
+    },
+    {
+      "source": "Пул Первого (Telegram)",
+      "date": "2026-08-11T10:46:36",
+      "date_str": "2026-08-11T10:46:36+00:00",
+      "text": "☑️Не переключайтесь.📕В эти минуты - в кабинете Первого с докладом премьер-министр.Подробности - скоро.",
+      "url": "https://t.me/pul_1/22293",
+      "raw_html": "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29891.png')\"><b>☑️</b></i> Не переключайтесь. <br/><br/><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/F09F9395.png')\"><b>📕</b></i> В эти минуты - в кабинете Первого с докладом премьер-министр. <br/><br/><i>Подробности - скоро.</i></div>"
     }
   ],
   "keywords": [
@@ -20810,5 +20898,5 @@
     "финансовая отчётность",
     "устойчивое развитие"
   ],
-  "last_updated": "2026-08-11T09:10:23.548417"
+  "last_updated": "2026-08-11T10:59:53.286595"
 }
